@@ -1,0 +1,54 @@
+---
+// src/pages/blog/[slug].astro
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog");
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {
+          post.data.coverImage && (
+            <Image
+              src={post.data.coverImage}
+              alt={post.data.coverAlt}
+              widths={[800, 1200]}
+              sizes="(max-width: 800px) 100vw, 800px"
+              format="avif"
+              class="img-fluid rounded mb-4"
+            />
+          )
+        }
+
+        <article class="prose">
+          <h1 class="display-4">{post.data.title}</h1>
+          <p class="text-muted">
+            Opublikowano: {
+              post.data.pubDate.toLocaleDateString("pl-PL", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })
+            }
+          </p>
+          <hr />
+
+          <Content />
+        </article>
+      </div>
+    </div>
+  </main>
+</Layout>
