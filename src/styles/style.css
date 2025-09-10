@@ -1,0 +1,54 @@
+/* src/styles/style.css */
+
+/* --- Global Layout & UX --- */
+
+html {
+  scroll-padding-top: 70px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* --- Prose Styling for Markdown Content --- */
+/* This class is applied to the container of the rendered Markdown */
+
+.prose {
+  color: #333;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose a {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  text-decoration: none;
+}
