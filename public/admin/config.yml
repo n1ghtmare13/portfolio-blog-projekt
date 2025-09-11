@@ -1,0 +1,26 @@
+# File: public/admin/config.yml
+
+# Backend configuration for Sveltia CMS (using direct GitHub connection)
+backend:
+  name: github
+  repo: n1ghtmare13/portfolio-blog-projekt # Your GitHub repository
+  branch: main # The branch where content changes will be saved
+
+# Where the CMS should look for and save media files
+media_folder: "src/assets/images" # Folder where uploaded images will be stored
+public_folder: "/src/assets/images" # How Astro should reference these images
+
+# Definition of your content collections (currently just the blog)
+collections:
+  - name: "blog" # This must match the collection name in src/content/config.ts
+    label: "Blog Posts" # How the collection is named in the CMS UI
+    folder: "src/content/blog" # Where to save new .md files
+    create: true # Allow creating new entries
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # How to name new files, e.g., 2025-09-11-new-post.md
+    fields: # The fields that will appear in the editor
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Image Alt Text", name: "coverAlt", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
