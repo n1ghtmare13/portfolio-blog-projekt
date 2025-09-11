@@ -17,15 +17,42 @@ main {
   flex: 1;
 }
 
+/* --- Image Card Styling --- */
+
+.card-img-link {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background-color: #e9ecef;
+}
+
+.card-img-link .card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* --- Prose Styling for Markdown Content --- */
-/* This class is applied to the container of the rendered Markdown */
 
 .prose {
-  color: #333;
+  color: #212529;
+  /* Responsive font size and line height */
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.7;
 }
 
 .prose p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .prose h1,
@@ -34,21 +61,33 @@ main {
 .prose h4,
 .prose h5,
 .prose h6 {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .prose ul,
 .prose ol {
   padding-left: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .prose a {
   color: #0d6efd;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease-in-out;
 }
 
 .prose a:hover {
+  color: #0a58ca;
+}
+
+/* Accessibility improvement: Visible focus state for keyboard users */
+.prose a:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 3px;
+  border-radius: 2px;
   text-decoration: none;
 }

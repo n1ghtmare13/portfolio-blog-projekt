@@ -1,66 +1,72 @@
 ---
 // src/pages/blog.astro
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 
-// Fetch and sort all entries from the 'blog' content collection.
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
+
 <Layout title="Blog">
   <main class="container my-5">
     <section id="blog">
-
-      <!-- Section Header -->
       <div class="text-center mb-5">
         <h1 class="display-5">Blog</h1>
         <p class="lead">Artykuły, przemyślenia i tutoriale.</p>
       </div>
 
-      <!-- Blog Posts Grid -->
       <div class="row">
-        {allPosts.map(post => (
-          <div class="col-md-6 mb-4">
-            <article class="card h-100">
+        {
+          allPosts.map((post, index) => (
+            <div class="col-md-6 mb-4">
+              <article class="card h-100">
+                {post.data.coverImage && (
+                  <a href={`/blog/${post.slug}`} class="card-img-link">
+                    <Image
+                      src={post.data.coverImage}
+                      alt={post.data.coverAlt || post.data.title}
+                      widths={[400, 800, 1200, 1400]}
+                      sizes="(max-width: 768px) 90vw, 50vw"
+                      format="avif"
+                      quality={80}
+                      class="card-img-top"
+                      priority={index < 2}
+                    />
+                  </a>
+                )}
 
-              <!-- Astro's Image component for automatic optimization -->
-              {post.data.coverImage && (
-                <a href={`/blog/${post.slug}`}>
-                  <Image
-                    src={post.data.coverImage}
-                    alt={post.data.coverAlt}
-                    widths={[400, 800, 1200, 1400]}
-                    sizes="(max-width: 768px) 90vw, 50vw"
-                    format="avif"
-                    quality={80}
-                    class="card-img-top h-100 w-100 object-fit-cover"
-                />
-                </a>
-              )}
-
-              <div class="card-body d-flex flex-column">
-                <h3 class="card-title">
-                  <a href={`/blog/${post.slug}`} class="text-decoration-none text-dark">{post.data.title}</a>
-                </h3>
-                <p class="text-muted">
-                  <small>
-                    {post.data.pubDate.toLocaleDateString('pl-PL', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric'
-                    })}
-                  </small>
-                </p>
-                <p class="card-text">{post.data.description}</p>
-                <a href={`/blog/${post.slug}`} class="btn btn-primary mt-auto">Czytaj dalej</a>
-              </div>
-
-            </article>
-          </div>
-        ))}
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title">
+                    <a
+                      href={`/blog/${post.slug}`}
+                      class="text-decoration-none text-dark"
+                    >
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="text-muted">
+                    <small>
+                      {post.data.pubDate.toLocaleDateString("pl-PL", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </small>
+                  </p>
+                  <p class="card-text">{post.data.description}</p>
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="btn btn-primary mt-auto"
+                  >
+                    Czytaj dalej
+                  </a>
+                </div>
+              </article>
+            </div>
+          ))
+        }
       </div>
-
     </section>
   </main>
 </Layout>

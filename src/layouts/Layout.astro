@@ -3,11 +3,13 @@
 
 // --- Imports ---
 // This CSS import is processed and bundled by Astro at build time.
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // This imports our custom styles.
-import '../styles/style.css';
+import "../styles/style.css";
 
+// This imports the component for smooth page transitions.
+import { ClientRouter } from "astro:transitions";
 
 // --- Component Props ---
 // Defines that this layout expects a 'title' property for each page.
@@ -16,10 +18,10 @@ export interface Props {
 }
 const { title } = Astro.props;
 
-
 // --- Server-side Logic ---
 const currentYear = new Date().getFullYear();
 ---
+
 <!doctype html>
 <html lang="pl">
   <head>
@@ -27,10 +29,12 @@ const currentYear = new Date().getFullYear();
     <meta name="description" content="Portfolio – projekty i blog." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <ClientRouter />
+
     <title>{title} | Portfolio Projekt</title>
   </head>
   <body>
-
     <!-- ================== NAVIGATION (Updated for Multi-Page Site) ================== -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container">
@@ -38,18 +42,32 @@ const currentYear = new Date().getFullYear();
         <a class="navbar-brand" href="/">Portfolio</a>
 
         <!-- Hamburger menu button for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Collapsible navigation links -->
         <div class="collapse navbar-collapse" id="main-nav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/projects">Projekty</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about">O Mnie</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
-            </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/projects">Projekty</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">O Mnie</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Kontakt</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
