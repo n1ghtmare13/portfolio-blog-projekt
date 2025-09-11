@@ -1,5 +1,25 @@
 /* src/styles/style.css */
 
+/* --- Font Definitions (Self-hosted) --- */
+
+/* fira-code-regular - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/fira-code-v26-latin_latin-ext-regular.woff2") format("woff2");
+}
+
+/* fira-code-700 - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/fira-code-v26-latin_latin-ext-700.woff2") format("woff2");
+}
+
 /* --- Global Layout & UX --- */
 
 html {
@@ -43,10 +63,8 @@ main {
 }
 
 /* --- Prose Styling for Markdown Content --- */
-
 .prose {
   color: #212529;
-  /* Responsive font size and line height */
   font-size: clamp(1rem, 2.5vw, 1.125rem);
   line-height: 1.7;
 }
@@ -84,10 +102,27 @@ main {
   color: #0a58ca;
 }
 
-/* Accessibility improvement: Visible focus state for keyboard users */
 .prose a:focus-visible {
   outline: 2px solid #0d6efd;
   outline-offset: 3px;
   border-radius: 2px;
   text-decoration: none;
+}
+.prose pre {
+  background-color: #282c34;
+  color: #abb2bf;
+  border-radius: 8px;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.prose code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.9em;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
 }
