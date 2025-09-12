@@ -13,7 +13,7 @@ const blogCollection = defineCollection({
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
               message:
-                'Okładka dla obrazków rastrowych (JPG, PNG, itp.) musi mieć co najmniej 1080px szerokości.',
+                'Szerokość dla obrazków rastrowych (JPG, PNG, itp.) musi wynosić co najmniej 1080px.',
             });
           }
         }
