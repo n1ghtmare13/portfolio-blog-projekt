@@ -1,0 +1,8 @@
+# Files and folders to ignore by Prettier
+
+# Folders for node modules and build outputs
+/node_modules
+/dist
+
+# Configuration files specific to other tools
+.hintrc

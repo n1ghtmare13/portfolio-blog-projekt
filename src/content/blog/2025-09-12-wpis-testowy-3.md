@@ -1,0 +1,8 @@
+---
+title: Wpis testowy 3
+pubDate: 2025-09-12T15:00:00
+description: Streszczenie, krótko opisujące treść wpisu
+coverImage: /src/assets/images/keyboard-with-testing-key.jpg
+coverAlt: keyboard with "testing" key
+---
+Pełna treść wpisu skierowana do czytelników.

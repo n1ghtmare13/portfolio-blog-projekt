@@ -1,4 +1,33 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
-  "unwantedRecommendations": []
+  "recommendations": [
+    "anbuselvanrocky.bootstrap5-vscode",
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "catppuccin.catppuccin-vsc",
+    "catppuccin.catppuccin-vsc-icons",
+    "christian-kohler.path-intellisense",
+    "deque-systems.vscode-axe-linter",
+    "dracula-theme.theme-dracula",
+    "eamodio.gitlens",
+    "ecmel.vscode-html-css",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "hossaini.bootstrap-intellisense",
+    "jock.svg",
+    "mechatroner.rainbow-csv",
+    "oderwat.indent-rainbow",
+    "pranaygp.vscode-css-peek",
+    "redhat.vscode-yaml",
+    "ritwickdey.liveserver",
+    "sburg.vscode-javascript-booster",
+    "stylelint.vscode-stylelint",
+    "tomoki1207.pdf",
+    "unifiedjs.vscode-mdx",
+    "wayou.vscode-todo-highlight",
+    "xabikos.javascriptsnippets",
+    "yzhang.markdown-all-in-one",
+    "zignd.html-css-class-completion",
+    "ms-vscode.live-server"
+  ]
 }

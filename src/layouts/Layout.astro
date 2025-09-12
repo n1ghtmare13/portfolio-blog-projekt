@@ -3,13 +3,17 @@
 
 // --- Imports ---
 // This CSS import is processed and bundled by Astro at build time.
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This imports our custom styles.
-import "../styles/style.css";
+import '../styles/style.scss';
+
+// Import Fira Code font from npm
+import '@fontsource/fira-code/400.css'; // Regular weight
+import '@fontsource/fira-code/700.css'; // Bold weight
 
 // This imports the component for smooth page transitions.
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 
 // --- Component Props ---
 // Defines that this layout expects a 'title' property for each page.
