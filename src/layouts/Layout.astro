@@ -2,11 +2,9 @@
 // src/layouts/Layout.astro
 
 // --- Imports ---
-// This CSS import is processed and bundled by Astro at build time.
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-// This imports our custom styles.
-import '../styles/style.scss';
+// This file manages loading and importing custom styles and Bootstrap.
+import '../styles/main.scss';
 
 // Import Fira Code font from npm
 import '@fontsource/fira-code/400.css'; // Regular weight
@@ -86,6 +84,14 @@ const currentYear = new Date().getFullYear();
     </footer>
 
     <!-- Bootstrap JS for client-side interactivity -->
-    <script src="/src/scripts/bootstrap.ts"></script>
+    <script>
+      function initializeBootstrap() {
+        // Dynamically import the FULL Bootstrap JS bundle
+        import('bootstrap/dist/js/bootstrap.bundle.min.js');
+      }
+      // Listen for the 'astro:page-load' event, which is fired
+      // after each page transition (thanks to ClientRouter).
+      document.addEventListener('astro:page-load', initializeBootstrap);
+    </script>
   </body>
 </html>

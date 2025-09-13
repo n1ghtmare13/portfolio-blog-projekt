@@ -27,7 +27,9 @@ const { Content } = await post.render();
               alt={post.data.coverAlt}
               widths={[800, 1200]}
               sizes="(max-width: 800px) 100vw, 800px"
+              priority
               format="avif"
+              quality={80}
               class="img-fluid rounded mb-4"
             />
           )

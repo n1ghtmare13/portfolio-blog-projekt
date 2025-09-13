@@ -1,0 +1,9 @@
+// src/styles/main.scss
+
+// --- Bootstrap ---
+@use 'bootstrap/scss/bootstrap' as *;
+
+// --- Own Styles ---
+
+// Import custom styles
+@use 'style';

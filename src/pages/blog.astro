@@ -30,8 +30,10 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
                       sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 550px"
                       format="avif"
                       quality={80}
-                      class="card-img-top h-100 w-100 object-fit-cover"
-                      priority={index < 2}
+                      class="card-img-top object-fit-fill"
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      decoding={index < 2 ? 'sync' : 'async'}
+                      data-img-index={index}
                     />
                   </a>
                 )}
@@ -69,4 +71,30 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       </div>
     </section>
   </main>
+  <script is:inline>
+    const desktopBreakpoint = 768;
+    const numImagesDesktop = 4;
+
+    if (window.innerWidth >= desktopBreakpoint) {
+      for (let i = 2; i < numImagesDesktop; i++) {
+        // Lazy load the next few images on desktop for better UX.
+        // Find the Image component by its data attribute.
+        const imageWrapper = document.querySelector(`[data-img-index="${i}"]`);
+
+        if (imageWrapper) {
+          // Find the correct <img> tag inside, as it has the loading/decoding attributes.
+          const imgTag =
+            imageWrapper.tagName === 'IMG'
+              ? imageWrapper
+              : imageWrapper.querySelector('img');
+
+          if (imgTag) {
+            // If found, change attributes to force earlier loading.
+            imgTag.loading = 'eager';
+            imgTag.decoding = 'sync';
+          }
+        }
+      }
+    }
+  </script>
 </Layout>

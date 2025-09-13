@@ -13,4 +13,14 @@ export default defineConfig({
       theme: 'dracula',
     },
   },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          quietDeps: true,
+        },
+      },
+    },
+  },
 });
