@@ -72,29 +72,40 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     </section>
   </main>
   <script is:inline>
-    const desktopBreakpoint = 768;
-    const numImagesDesktop = 4;
+    function optimizeImageLoading() {
+      // Check if we are on a page with images by looking for the first image with our attribute.
+      if (!document.querySelector('[data-img-index="0"]')) {
+        return;
+      }
 
-    if (window.innerWidth >= desktopBreakpoint) {
-      for (let i = 2; i < numImagesDesktop; i++) {
-        // Lazy load the next few images on desktop for better UX.
-        // Find the Image component by its data attribute.
-        const imageWrapper = document.querySelector(`[data-img-index="${i}"]`);
+      const desktopBreakpoint = 768;
+      const numImagesDesktop = 4;
 
-        if (imageWrapper) {
-          // Find the correct <img> tag inside, as it has the loading/decoding attributes.
-          const imgTag =
-            imageWrapper.tagName === 'IMG'
-              ? imageWrapper
-              : imageWrapper.querySelector('img');
+      if (window.innerWidth >= desktopBreakpoint) {
+        for (let i = 2; i < numImagesDesktop; i++) {
+          const imageWrapper = document.querySelector(
+            `[data-img-index="${i}"]`
+          );
 
-          if (imgTag) {
-            // If found, change attributes to force earlier loading.
-            imgTag.loading = 'eager';
-            imgTag.decoding = 'sync';
+          if (imageWrapper) {
+            const imgTag =
+              imageWrapper.tagName === 'IMG'
+                ? imageWrapper
+                : imageWrapper.querySelector('img');
+
+            if (imgTag && imgTag.loading === 'lazy') {
+              imgTag.loading = 'eager';
+              imgTag.decoding = 'sync';
+            }
           }
         }
       }
     }
+
+    // 1. Run the function once when the script loads.
+    optimizeImageLoading();
+
+    // 2. Run the function again after each navigation to a new page.
+    document.addEventListener('astro:page-load', optimizeImageLoading);
   </script>
 </Layout>
