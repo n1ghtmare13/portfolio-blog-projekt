@@ -1,6 +1,5 @@
-# build output
+# Build output
 dist/
-# generated types
 .astro/
 
 # dependencies
@@ -12,9 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
+.env*.local
+.env.development
 .env.production
 
 # macOS-specific files
@@ -22,3 +22,18 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# VS Code - temporary files except settings we want to keep
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# Temporary editor files
+*.swp
+*~
+*.bak
+
+# Operating system cache files
+Thumbs.db
+ehthumbs.db
