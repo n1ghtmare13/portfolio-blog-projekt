@@ -112,3 +112,44 @@ main {
     font-size: 0.9em; // Default smaller size for inline code
   }
 }
+
+.podzialy {
+  
+  float: left;
+  width: 29.2%;
+  height: 310px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 40px;
+  background-color: #dee1e6;
+  margin: 2%;
+  margin-top: 40px;
+}
+
+.tytulowe {
+  font-size: 22px;
+  font-weight: bold;
+  
+}
+
+.opisowe {
+  font-size: 17px;
+  
+}
+
+.profile_picture {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 300px; 
+height: 300px;
+margin-top: 35px; 
+margin-bottom: 5px;
+}
+
+.imie {
+  font-size: 44px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
