@@ -1,11 +1,10 @@
 ---
 title: Wprowadzenie do JavaScript – Poradnik dla Początkujących
 pubDate: 2025-09-11T15:32:00
-description: 'JavaScript (JS) to język programowania, który pozwala tworzyć dynamiczne i interaktywne strony internetowe.'
+description: JavaScript (JS) to język programowania, który pozwala tworzyć dynamiczne i interaktywne strony internetowe.
 coverImage: ../../assets/images/post-1.avif
 coverAlt: JavaScript logo with a "JavaScript programming language" text
 ---
-
 JavaScript (JS) to język programowania, który pozwala tworzyć dynamiczne i interaktywne strony internetowe. Jeśli HTML i CSS odpowiadają za strukturę i wygląd strony, JavaScript dodaje jej „życie”.
 
 ## 1. Podstawy JavaScript
