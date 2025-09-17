@@ -13,6 +13,8 @@ import '@fontsource/fira-code/700.css'; // Bold weight
 // This imports the component for smooth page transitions.
 import { ClientRouter } from 'astro:transitions';
 
+// Import the Analytics component for tracking
+import Analytics from '../components/Analytics.astro';
 // --- Component Props ---
 // Defines that this layout expects a 'title' property for each page.
 export interface Props {
@@ -35,6 +37,7 @@ const currentYear = new Date().getFullYear();
     <ClientRouter />
 
     <title>{title} | Portfolio Projekt</title>
+    <Analytics />
   </head>
   <body>
     <!-- NAVIGATION SECTION -->
