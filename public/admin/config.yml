@@ -16,7 +16,7 @@ collections:
     label: "Blog Posts" # How the collection is named in the CMS UI
     folder: "src/content/blog" # Where to save new .md files
     create: true # Allow creating new entries
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # How to name new files, e.g., 2025-09-11-new-post.md
+    slug: "{{slug}}" # How to name new files, e.g., new-post.md
     fields: # The fields that will appear in the editor
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
