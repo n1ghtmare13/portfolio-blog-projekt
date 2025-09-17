@@ -37,13 +37,13 @@ const currentYear = new Date().getFullYear();
     <title>{title} | Portfolio Projekt</title>
   </head>
   <body>
-    <!-- ================== NAVIGATION (Updated for Multi-Page Site) ================== -->
+    <!-- NAVIGATION SECTION -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container">
-        <!-- Main logo/brand link points to the homepage -->
+        {/* Main logo/brand link points to the homepage */}
         <a class="navbar-brand" href="/">Portfolio</a>
 
-        <!-- Hamburger menu button for mobile -->
+        {/* Hamburger menu button for mobile */}
         <button
           class="navbar-toggler"
           type="button"
@@ -56,34 +56,35 @@ const currentYear = new Date().getFullYear();
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Collapsible navigation links -->
+        {/* Collapsible navigation links */}
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/projects">Projekty</a>
+              <a class="nav-link" href="/projekty">Projekty</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">O Mnie</a>
+              <a class="nav-link" href="/o-mnie">O Mnie</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Kontakt</a>
+              <a class="nav-link" href="/kontakt">Kontakt</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Page content from other .astro files will be injected here. -->
+    {/* Page content from other .astro files will be injected here. */}
     <slot />
 
+    <!-- FOOTER SECTION -->
     <footer class="bg-dark text-white text-center py-3">
       <div class="container">
         <p class="mb-0">&copy; {currentYear}</p>
       </div>
     </footer>
 
-    <!-- Bootstrap JS for client-side interactivity -->
+    {/* Bootstrap JS for client-side interactivity */}
     <script>
       function initializeBootstrap() {
         // Dynamically import the FULL Bootstrap JS bundle
