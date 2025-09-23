@@ -16,10 +16,24 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
         <p class="lead">Artykuły, przemyślenia i tutoriale.</p>
       </div>
 
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+          <input
+            type="search"
+            id="search-input"
+            class="form-control form-control-lg"
+            placeholder="Szukaj we wpisach..."
+          />
+        </div>
+      </div>
+
       <div class="row">
         {
           allPosts.map((post, index) => (
-            <div class="col-md-6 mb-4">
+            <div
+              class="col-md-6 mb-4 blog-post-card"
+              data-post-slug={post.slug}
+            >
               <article class="card h-100">
                 {post.data.coverImage && (
                   <a href={`/blog/${post.slug}`} class="card-img-link">
@@ -71,4 +85,85 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       </div>
     </section>
   </main>
+  <script src="/pagefind/pagefind.js" type="module"></script>
+  <script type="module">
+    const searchInput = document.getElementById('search-input');
+    const allPostCards = document.querySelectorAll('.blog-post-card');
+
+    if (!searchInput) {
+      console.warn('Brak elementu #search-input');
+    } else {
+      let pfModule;
+
+      async function getPagefind() {
+        if (!pfModule) {
+          pfModule = await import('/pagefind/pagefind.js');
+        }
+        return pfModule;
+      }
+
+      let currentVisibleSlugs = new Set(
+        Array.from(allPostCards)
+          .filter((card) => card.style.display !== 'none')
+          .map((card) => card.getAttribute('data-post-slug'))
+      );
+
+      async function handleSearch(event) {
+        const query = event.target.value.trim().toLowerCase();
+
+        if (!query) {
+          const allSlugs = new Set(
+            Array.from(allPostCards).map((card) =>
+              card.getAttribute('data-post-slug')
+            )
+          );
+
+          // Aktualizuj tylko jeśli coś się zmieniło
+          if (!setsAreEqual(currentVisibleSlugs, allSlugs)) {
+            allPostCards.forEach((card) => (card.style.display = ''));
+            currentVisibleSlugs = allSlugs;
+          }
+          return;
+        }
+
+        const pf = await getPagefind();
+        const search = await pf.debouncedSearch(query);
+
+        if (!search || search.results.length === 0) {
+          if (currentVisibleSlugs.size > 0) {
+            allPostCards.forEach((card) => (card.style.display = 'none'));
+            currentVisibleSlugs = new Set();
+          }
+          return;
+        }
+
+        const resultData = await Promise.all(
+          search.results.map((r) => r.data())
+        );
+        const resultSlugs = new Set(
+          resultData.map((data) => {
+            const urlParts = data.url.split('/');
+            return urlParts[urlParts.length - 2];
+          })
+        );
+
+        if (!setsAreEqual(currentVisibleSlugs, resultSlugs)) {
+          allPostCards.forEach((card) => {
+            const postSlug = card.getAttribute('data-post-slug');
+            card.style.display =
+              postSlug && resultSlugs.has(postSlug) ? '' : 'none';
+          });
+          currentVisibleSlugs = resultSlugs;
+        }
+      }
+
+      function setsAreEqual(setA, setB) {
+        if (setA.size !== setB.size) return false;
+        for (const item of setA) if (!setB.has(item)) return false;
+        return true;
+      }
+
+      searchInput.addEventListener('input', handleSearch);
+    }
+  </script>
 </Layout>
