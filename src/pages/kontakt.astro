@@ -14,10 +14,12 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
-        {/*
+        {
+          /*
           ADD A CUSTOM CLASS `form-container` TO APPLY THE HOVER EFFECT
           This makes the form feel consistent with other interactive elements on the site.
-        */}
+        */
+        }
         <div
           class="form-container border border-2 border-primary rounded-4 p-4 p-md-5 bg-primary-subtle"
         >
@@ -37,18 +39,24 @@ import Layout from '../layouts/Layout.astro';
             </p>
 
             <div class="mb-4">
-              <label for="topic" class="form-label fw-medium">Temat wiadomości</label>
+              <label for="topic" class="form-label fw-medium"
+                >Temat wiadomości</label
+              >
               <select class="form-select" id="topic" name="topic" required>
                 <option selected disabled value="">Wybierz temat...</option>
-                <option value="job-offer">Propozycja pracy</option>
-                <option value="project-collaboration">Współpraca przy projekcie</option>
-                <option value="technical-question">Pytanie techniczne</option>
-                <option value="other">Inne</option>
+                <option value="Propozycja pracy">Propozycja pracy</option>
+                <option value="Współpraca przy projekcie"
+                  >Współpraca przy projekcie</option
+                >
+                <option value="Pytanie techniczne">Pytanie techniczne</option>
+                <option value="Inne">Inne</option>
               </select>
             </div>
 
             <div class="mb-3">
-              <label for="name" class="form-label fw-medium">Imię i nazwisko</label>
+              <label for="name" class="form-label fw-medium"
+                >Imię i nazwisko</label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -59,7 +67,9 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="mb-3">
-              <label for="email" class="form-label fw-medium">Adres e-mail</label>
+              <label for="email" class="form-label fw-medium"
+                >Adres e-mail</label
+              >
               <input
                 type="email"
                 class="form-control"
@@ -70,7 +80,8 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="mb-4">
-              <label for="message" class="form-label fw-medium">Wiadomość</label>
+              <label for="message" class="form-label fw-medium">Wiadomość</label
+              >
               <textarea
                 class="form-control"
                 id="message"
