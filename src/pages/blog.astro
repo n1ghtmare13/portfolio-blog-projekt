@@ -71,41 +71,4 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       </div>
     </section>
   </main>
-  <script is:inline>
-    function optimizeImageLoading() {
-      // Check if we are on a page with images by looking for the first image with our attribute.
-      if (!document.querySelector('[data-img-index="0"]')) {
-        return;
-      }
-
-      const desktopBreakpoint = 768;
-      const numImagesDesktop = 4;
-
-      if (window.innerWidth >= desktopBreakpoint) {
-        for (let i = 2; i < numImagesDesktop; i++) {
-          const imageWrapper = document.querySelector(
-            `[data-img-index="${i}"]`
-          );
-
-          if (imageWrapper) {
-            const imgTag =
-              imageWrapper.tagName === 'IMG'
-                ? imageWrapper
-                : imageWrapper.querySelector('img');
-
-            if (imgTag && imgTag.loading === 'lazy') {
-              imgTag.loading = 'eager';
-              imgTag.decoding = 'sync';
-            }
-          }
-        }
-      }
-    }
-
-    // 1. Run the function once when the script loads.
-    optimizeImageLoading();
-
-    // 2. Run the function again after each navigation to a new page.
-    document.addEventListener('astro:page-load', optimizeImageLoading);
-  </script>
 </Layout>
