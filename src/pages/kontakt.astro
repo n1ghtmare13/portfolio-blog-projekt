@@ -4,7 +4,117 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Kontakt">
   <main class="container my-5">
-    <h1 class="text-center">Kontakt</h1>
-    <p class="text-center lead">Ta strona jest w budowie.</p>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-4">
+          <h1 class="display-5 fw-bold">Napisz do mnie</h1>
+          <p class="lead text-muted">
+            Masz pytanie, propozycję współpracy lub po prostu chcesz się
+            przywitać?
+          </p>
+        </div>
+
+        {
+          /*
+          ADD A CUSTOM CLASS `form-container` TO APPLY THE HOVER EFFECT
+          This makes the form feel consistent with other interactive elements on the site.
+        */
+        }
+        <div
+          class="form-container border border-2 border-primary rounded-4 p-4 p-md-5 bg-primary-subtle"
+        >
+          <form
+            name="contact"
+            method="POST"
+            action="/kontakt/sukces"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            {/* Netlify required hidden inputs */}
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="d-none">
+              <label>
+                Don’t fill this out if you’re human: <input name="bot-field" />
+              </label>
+            </p>
+
+            <div class="mb-4">
+              <label for="topic" class="form-label fw-medium"
+                >Temat wiadomości</label
+              >
+              <select class="form-select" id="topic" name="topic" required>
+                <option selected disabled value="">Wybierz temat...</option>
+                <option value="Propozycja pracy">Propozycja pracy</option>
+                <option value="Współpraca przy projekcie"
+                  >Współpraca przy projekcie</option
+                >
+                <option value="Pytanie techniczne">Pytanie techniczne</option>
+                <option value="Inne">Inne</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="name" class="form-label fw-medium"
+                >Imię i nazwisko</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label fw-medium"
+                >Adres e-mail</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="message" class="form-label fw-medium">Wiadomość</label
+              >
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                rows="5"
+                required></textarea>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg px-5"
+                >Wyślij wiadomość</button
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
 </Layout>
+
+<!--
+  This style block is scoped to this component.
+  It adds a hover effect to the form container to enhance interactivity.
+-->
+<style>
+  .form-container {
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+
+  .form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
+  }
+</style>
