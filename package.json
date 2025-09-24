@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -17,11 +18,17 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
+    "@types/bun": "^1.2.22",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.92.1",
     "stylelint": "^16.24.0",
     "stylelint-config-standard-scss": "^16.0.0"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "esbuild",
+    "sharp"
+  ]
 }

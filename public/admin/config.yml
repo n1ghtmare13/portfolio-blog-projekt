@@ -19,6 +19,12 @@ collections:
     slug: "{{slug}}" # How to name new files, e.g., new-post.md
     fields: # The fields that will appear in the editor
       - { label: "Title", name: "title", widget: "string" }
+      - {
+          label: "URL Slug",
+          name: "slug",
+          widget: "string",
+          hint: "Krótki identyfikator URL, np. 'js-start'. Używaj tylko małych liter, cyfr i myślników.",
+        }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Cover Image", name: "coverImage", widget: "image" }

@@ -3,6 +3,8 @@ dist/
 .astro/
 
 # dependencies
+package-lock.json
+pnpm-lock.yaml
 node_modules/
 
 # logs
