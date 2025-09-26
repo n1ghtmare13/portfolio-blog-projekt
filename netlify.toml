@@ -1,3 +1,49 @@
+# --- Build Configuration ---
+# Tells Netlify how to build your Astro site.
 [build]
 command = "bun run build"
 publish = "dist"
+
+
+# --- Security Headers ---
+# Apply the following security headers to all pages (`/*`).
+[[headers]]
+for = "/*"
+[headers.values]
+
+# === Core Security Headers ===
+
+# Prevents clickjacking; blocks site from being used in `<iframe>`s.
+X-Frame-Options = "DENY"
+# Prevents MIME-sniffing; ensures browser respects file types.
+X-Content-Type-Options = "nosniff"
+# Enhances privacy by controlling referrer data sent to other sites.
+Referrer-Policy = "strict-origin-when-cross-origin"
+# Disables access to sensitive browser APIs (camera, microphone, etc.).
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+
+# === HSTS (HTTP Strict Transport Security) ===
+
+# Enforces HTTPS connections to prevent man-in-the-middle attacks.
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+
+# === Content Security Policy (CSP) ===
+
+# Your site's firewall. Defines a whitelist of allowed sources to prevent XSS attacks.
+#
+# DEBUGGING TIP: If something breaks (images, scripts), check the browser console (F12).
+# "CSP" errors will tell you exactly which domain to add to the list below.
+Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' static.cloudflareinsights.com giscus.app;
+      style-src 'self' 'unsafe-inline' giscus.app;
+      img-src 'self' data: avatars.githubusercontent.com placehold.co;
+      connect-src 'self' cloudflare.com api.github.com;
+      frame-src giscus.app;
+      font-src 'self';
+      object-src 'none';
+      form-action 'self';
+      frame-ancestors 'none';
+    """
