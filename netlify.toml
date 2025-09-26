@@ -40,9 +40,9 @@ Content-Security-Policy = """
       script-src 'self' 'unsafe-inline' static.cloudflareinsights.com giscus.app;
       style-src 'self' 'unsafe-inline' giscus.app;
       img-src 'self' data: avatars.githubusercontent.com placehold.co;
-      connect-src 'self' cloudflare.com api.github.com;
+      connect-src 'self' cloudflare.com api.github.com cloudflareinsights.com;
       frame-src giscus.app;
-      font-src 'self';
+      font-src 'self' data:;
       object-src 'none';
       form-action 'self';
       frame-ancestors 'none';
