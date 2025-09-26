@@ -1,5 +1,5 @@
 # --- Build Configuration ---
-# Tells Netlify how to build your Astro site.
+# Tells Netlify how to build our Astro site.
 [build]
 command = "bun run build"
 publish = "dist"
@@ -22,6 +22,11 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 # Disables access to sensitive browser APIs (camera, microphone, etc.).
 Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
 
+# === Advanced Cross-Origin Headers (Optional but Recommended) ===
+# Prevents other domains from loading our resources (e.g., images).
+Cross-Origin-Resource-Policy = "same-origin"
+# Isolates our site from pop-ups to mitigate certain attacks.
+Cross-Origin-Opener-Policy = "same-origin"
 
 # === HSTS (HTTP Strict Transport Security) ===
 
