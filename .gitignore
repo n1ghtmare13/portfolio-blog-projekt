@@ -39,3 +39,6 @@ pnpm-debug.log*
 # Operating system cache files
 Thumbs.db
 ehthumbs.db
+
+# Pagefind search index for local development
+/public/pagefind

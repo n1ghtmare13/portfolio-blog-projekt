@@ -47,7 +47,27 @@ const { posts } = Astro.props;
 </div>
 
 <script>
+  interface PagefindSubResult {
+    url: string;
+  }
+  interface PagefindResultData {
+    sub_results: PagefindSubResult[];
+  }
+  interface PagefindResult {
+    data: () => Promise<PagefindResultData>;
+  }
+  interface PagefindSearch {
+    results: PagefindResult[];
+  }
+  interface PagefindInstance {
+    debouncedSearch: (query: string) => Promise<PagefindSearch | null>;
+  }
+
   function initializeSearch() {
+    let pagefind: PagefindInstance | undefined;
+    let pagefindPromise: Promise<PagefindInstance> | null = null;
+    let latestSearchId = 0;
+
     const searchArea = document.getElementById('blog-search-area');
     if (!searchArea) return;
 
@@ -74,18 +94,18 @@ const { posts } = Astro.props;
       })
     );
 
-    let pagefind: any;
-    let pagefindPromise: Promise<any> | null = null;
-    let latestSearchId = 0;
-
     /**
      * Lazily loads the Pagefind library. The script is only fetched when the user
      * interacts with the search input, improving initial page load performance.
      */
     function preloadPagefind() {
       if (!pagefindPromise) {
-        // @ts-ignore - Pagefind is loaded as an external script not recognized by TS.
-        pagefindPromise = import('/pagefind/pagefind.js');
+        // WORKAROUND for Vite bug #14850: Dynamic import of public files is broken.
+        // Using eval() hides the import from Vite's static analysis.
+        // We use "as" to restore type safety, telling TypeScript what to expect.
+        pagefindPromise = eval(
+          `import('/pagefind/pagefind.js')`
+        ) as Promise<PagefindInstance>;
       }
       return pagefindPromise;
     }
@@ -120,7 +140,7 @@ const { posts } = Astro.props;
 
       const visibleSlugs = new Set<string>();
       const resultData = await Promise.all(
-        search.results.map((r: any) => r.data())
+        search.results.map((r: PagefindResult) => r.data())
       );
 
       /**
