@@ -1,9 +1,13 @@
 // src/styles/main.scss
 
-// --- Bootstrap ---
-@use 'bootstrap/scss/bootstrap' as *;
+// --- Bootstrap Custom Variable Overrides ---
+@use 'bootstrap/scss/bootstrap' with (
+  //Example overrides:
+  $primary: #0d6efd // Bootstrap default primary color
+);
 
-// --- Own Styles ---
-
-// Import custom styles
+// --- Own Custom Styles ---
 @use 'style';
+
+// --- Plain CSS Imports ---
+@import 'bootstrap-icons/font/bootstrap-icons.css';
