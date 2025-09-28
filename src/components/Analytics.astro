@@ -32,9 +32,9 @@ const isProd = import.meta.env.PROD;
         document.head.appendChild(newScript);
       }
 
-      // Listen for the `astro:after-swap` event that Astro emits
+      // Listen for the `astro:page-load` event that Astro emits
       // after every View Transitions navigation when the new page is in the DOM.
-      document.addEventListener('astro:after-swap', reinjectCloudflareScript);
+      document.addEventListener('astro:page-load', reinjectCloudflareScript);
 
       // Run the function once, on the initial full page load.
       reinjectCloudflareScript();
