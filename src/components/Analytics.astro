@@ -1,2 +1,43 @@
-<!-- src/components/Analytics.astro -->
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "803401bd51ce41edbededd1d4bd7c15a"}'></script><!-- End Cloudflare Web Analytics -->
+---
+// src/components/Analytics.astro
+
+const CLOUDFLARE_TOKEN = "803401bd51ce41edbededd1d4bd7c15a";
+const isProd = import.meta.env.PROD;
+---
+
+{
+  isProd && (
+    <script define:vars={{ token: CLOUDFLARE_TOKEN }}>
+      /**
+       * That function dynamically reinjects the Cloudflare script into the document head.
+       * This is necessary because Astro's View Transitions can cause the script to be lost
+       * during client-side navigation, leading to loss of analytics tracking.
+       */
+      function reinjectCloudflareScript() {
+        // Find and remove any existing Cloudflare script to avoid duplicates.
+        const oldScript = document.querySelector('script[data-cf-beacon]');
+        if (oldScript) {
+          oldScript.remove();
+        }
+
+        // Create a new script element for Cloudflare Insights.
+        const newScript = document.createElement('script');
+        newScript.defer = true;
+        newScript.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+
+        // Set the attribute with the token we got from `define:vars`.
+        newScript.setAttribute('data-cf-beacon', JSON.stringify({ token: token }));
+
+        // Add the new script to the document head.
+        document.head.appendChild(newScript);
+      }
+
+      // Listen for the `astro:after-swap` event that Astro emits
+      // after every View Transitions navigation when the new page is in the DOM.
+      document.addEventListener('astro:after-swap', reinjectCloudflareScript);
+
+      // Run the function once, on the initial full page load.
+      reinjectCloudflareScript();
+    </script>
+  )
+}

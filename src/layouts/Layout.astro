@@ -40,6 +40,7 @@ const currentYear = new Date().getFullYear();
             type="button"
             id="search-toggle-button"
             aria-label="Otwórz wyszukiwarkę"
+            aria-expanded="false"
           >
             <i class="bi bi-search"></i>
           </button>
@@ -137,6 +138,9 @@ const currentYear = new Date().getFullYear();
           if (!isSearchActive) return;
           isSearchActive = false;
 
+          desktopToggleButton.setAttribute('aria-label', 'Otwórz wyszukiwarkę');
+          desktopToggleButton.setAttribute('aria-expanded', 'false');
+
           // Desktop state
           const desktopIcon = desktopToggleButton.querySelector('i');
           desktopIcon?.classList.add('bi-search');
@@ -156,6 +160,9 @@ const currentYear = new Date().getFullYear();
           const isDesktop = window.innerWidth >= 992;
 
           if (isDesktop) {
+            desktopToggleButton.setAttribute('aria-label', 'Zamknij wyszukiwarkę');
+            desktopToggleButton.setAttribute('aria-expanded', 'true');
+
             const desktopIcon = desktopToggleButton.querySelector('i');
             desktopIcon?.classList.remove('bi-search');
             desktopIcon?.classList.add('bi-x-lg');

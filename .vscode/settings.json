@@ -14,18 +14,19 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-
   "editor.formatOnSave": true,
-
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit"
   },
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": ["css", "scss"],
+
+  "files.associations": {
+    "bun.lock": "jsonc"
+  },
 }
