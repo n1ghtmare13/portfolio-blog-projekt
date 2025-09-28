@@ -1,0 +1,180 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogPostCard from './BlogPostCard.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div id="blog-search-area">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <input
+        type="search"
+        id="search-input"
+        class="form-control form-control-lg"
+        placeholder="Szukaj we wpisach..."
+        aria-label="Szukaj we wpisach"
+      />
+    </div>
+  </div>
+
+  {
+    /**
+     * This message is displayed when no search results are found.
+     * `role="status"` and `aria-live="polite"` make it accessible to screen readers,
+     * which will announce the message when it becomes visible.
+     */
+  }
+  <div
+    id="no-results-message"
+    class="text-center my-5"
+    role="status"
+    aria-live="polite"
+    hidden
+  >
+    <p class="lead">
+      Nie znaleziono artykułów pasujących do Twojego zapytania.
+    </p>
+  </div>
+
+  <div class="row" id="posts-container">
+    {posts.map((post, index) => <BlogPostCard post={post} index={index} />)}
+  </div>
+</div>
+
+<script>
+  function initializeSearch() {
+    const searchArea = document.getElementById('blog-search-area');
+    if (!searchArea) return;
+
+    const searchInput = searchArea.querySelector(
+      '#search-input'
+    ) as HTMLInputElement | null;
+    const allPostCards = searchArea.querySelectorAll('.blog-post-card');
+    const noResultsMessage = searchArea.querySelector(
+      '#no-results-message'
+    ) as HTMLElement | null;
+
+    if (!searchInput || allPostCards.length === 0 || !noResultsMessage) {
+      return;
+    }
+
+    /**
+     * A performance optimization that maps post slugs to their corresponding HTML elements.
+     * This provides O(1) lookups and avoids expensive DOM queries inside the search handler.
+     */
+    const postCardMap = new Map<string, HTMLElement>(
+      Array.from(allPostCards).map((card) => {
+        const htmlCard = card as HTMLElement;
+        return [htmlCard.dataset.postSlug!, htmlCard];
+      })
+    );
+
+    let pagefind: any;
+    let pagefindPromise: Promise<any> | null = null;
+    let latestSearchId = 0;
+
+    /**
+     * Lazily loads the Pagefind library. The script is only fetched when the user
+     * interacts with the search input, improving initial page load performance.
+     */
+    function preloadPagefind() {
+      if (!pagefindPromise) {
+        // @ts-ignore - Pagefind is loaded as an external script not recognized by TS.
+        pagefindPromise = import('/pagefind/pagefind.js');
+      }
+      return pagefindPromise;
+    }
+
+    async function handleSearch() {
+      /**
+       * This counter prevents a classic race condition where an older, slower
+       * network request resolves after a newer, faster one. Only the results
+       * from the most recent search query will be displayed.
+       */
+      const searchId = ++latestSearchId;
+      const query = searchInput!.value.trim();
+      pagefind = await preloadPagefind();
+
+      if (!query) {
+        postCardMap.forEach((card) => (card.hidden = false));
+        noResultsMessage!.hidden = true;
+        return;
+      }
+
+      const search = await pagefind.debouncedSearch(query);
+
+      if (searchId !== latestSearchId) {
+        return;
+      }
+
+      if (!search || search.results.length === 0) {
+        postCardMap.forEach((card) => (card.hidden = true));
+        noResultsMessage!.hidden = false;
+        return;
+      }
+
+      const visibleSlugs = new Set<string>();
+      const resultData = await Promise.all(
+        search.results.map((r: any) => r.data())
+      );
+
+      /**
+       * This is the core result-processing logic. Due to our indexing strategy
+       * (using `data-pagefind-body` on individual cards), Pagefind returns a single
+       * result for the `/blog/` page. The *actual* matching posts are contained
+       * within its `sub_results` array, so we must iterate through it.
+       */
+      for (const data of resultData) {
+        if (data.sub_results && data.sub_results.length > 0) {
+          for (const sub of data.sub_results) {
+            // The URL format for sub-results is "/blog/#post-slug"
+            if (sub.url && sub.url.startsWith('/blog/#')) {
+              const slug = sub.url.split('#')[1];
+              if (slug) {
+                visibleSlugs.add(slug);
+              }
+            }
+          }
+        }
+      }
+
+      postCardMap.forEach((card, slug) => {
+        card.hidden = !visibleSlugs.has(slug);
+      });
+
+      noResultsMessage!.hidden = visibleSlugs.size > 0;
+    }
+
+    /**
+     * Checks for a search query in the URL parameters (`?q=...`) on page load.
+     * This enables linking directly to a pre-filtered search results page from
+     * the global search form.
+     */
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryFromUrl = urlParams.get('q');
+
+    if (queryFromUrl) {
+      searchInput.value = queryFromUrl;
+    }
+
+    searchInput.addEventListener('input', handleSearch);
+    searchInput.addEventListener('focus', preloadPagefind, { once: true });
+
+    if (searchInput.value) {
+      handleSearch();
+    }
+  }
+
+  /**
+   * The `astro:page-load` event is crucial for client-side navigation. It ensures
+   * the search functionality is re-initialized correctly when using Astro's
+   * View Transitions, preventing the script from becoming stale after a page change.
+   */
+  document.addEventListener('astro:page-load', initializeSearch);
+  initializeSearch();
+</script>

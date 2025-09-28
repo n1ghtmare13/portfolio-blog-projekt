@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import removeAccents from 'remove-accents';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  index: number;
+}
+
+const { post, index } = Astro.props;
+---
+
+<div class="col-md-6 mb-4 blog-post-card" data-post-slug={post.slug}>
+  {
+    /**
+     * `data-pagefind-body` instructs Pagefind to treat this entire card as a single,
+     * self-contained search result. All content within will be indexed, unless
+     * explicitly ignored with `data-pagefind-ignore`.
+     */
+  }
+  <article class="card h-100" data-pagefind-body>
+    {
+      post.data.coverImage && (
+        <a
+          href={`/blog/${post.slug}`}
+          class="card-img-link"
+          aria-hidden="true"
+          tabindex="-1"
+          data-pagefind-ignore
+        >
+          <Image
+            src={post.data.coverImage}
+            alt={post.data.coverAlt || post.data.title}
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 90vw, 45vw"
+            format="avif"
+            quality={80}
+            class="card-img-top object-fit-fill"
+            loading={index < 2 ? 'eager' : 'lazy'}
+          />
+        </a>
+      )
+    }
+    <div class="card-body d-flex flex-column">
+      <h3 class="card-title" id={post.slug}>
+        <a href={`/blog/${post.slug}`} class="text-decoration-none text-dark">
+          {post.data.title}
+        </a>
+      </h3>
+
+      <p class="text-muted" data-pagefind-ignore>
+        <small>
+          {
+            post.data.pubDate.toLocaleDateString('pl-PL', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })
+          }
+        </small>
+      </p>
+
+      <p class="card-text">{post.data.description}</p>
+
+      {
+        /**
+         * A hidden container providing accent-insensitive versions of the title and description.
+         * This allows users to search for "zolc" and find "żółć", overcoming a limitation
+         * in Pagefind's default language support. This element is hidden from both visual
+         * rendering (`display: none`) and screen readers (`aria-hidden="true"`) to prevent
+         * duplicate content issues for users and search engines.
+         */
+      }
+      <div style="display: none;" aria-hidden="true">
+        <p>{removeAccents(post.data.title)}</p>
+        <p>{removeAccents(post.data.description)}</p>
+      </div>
+
+      <a
+        href={`/blog/${post.slug}`}
+        class="btn btn-primary mt-auto"
+        data-pagefind-ignore
+      >
+        Czytaj dalej
+      </a>
+    </div>
+  </article>
+</div>

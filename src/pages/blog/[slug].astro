@@ -1,11 +1,16 @@
 ---
 // src/pages/blog/[slug].astro
-import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
+/**
+ * Generates a static page for each blog post in the collection at build time.
+ * This is Astro's implementation of Static Site Generation (SSG) for dynamic routes.
+ * @see https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+ */
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
+  const allPosts = await getCollection('blog');
   return allPosts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -39,16 +44,24 @@ const { Content } = await post.render();
           <h1 class="display-4">{post.data.title}</h1>
           <p class="text-muted">
             Opublikowano: {
-              post.data.pubDate.toLocaleDateString("pl-PL", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
+              post.data.pubDate.toLocaleDateString('pl-PL', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
               })
             }
           </p>
           <hr />
 
-          <Content />
+          {/**
+           * The main content of the post is explicitly ignored by Pagefind.
+           * This is a crucial optimization to keep the search index small and relevant,
+           * as our search functionality is intentionally limited to post titles and descriptions.
+           * Those are indexed from the main blog listing page (`/blog`).
+           */}
+          <div data-pagefind-ignore>
+            <Content />
+          </div>
         </article>
       </div>
     </div>

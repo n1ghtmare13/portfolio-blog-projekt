@@ -14,7 +14,10 @@
     "@fontsource/fira-code": "^5.2.6",
     "@popperjs/core": "^2.11.8",
     "astro": "^5.13.7",
-    "bootstrap": "^5.3.8"
+    "astro-pagefind": "^1.8.5",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "remove-accents": "^0.5.0"
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
