@@ -1,0 +1,45 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Strona Nie Znaleziona"
+  description="Niestety, strona o podanym adresie nie istnieje na tej witrynie."
+  noIndex={true}
+>
+  <main class="container my-5 text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="display-1 fw-bold">404</h1>
+        <h2 class="display-5">Ups! Strona nie została znaleziona.</h2>
+        <p class="lead text-muted mt-4 mx-auto">
+          Link, z którego korzystasz, może być nieaktualny, strona mogła zostać
+          usunięta lub po prostu wkradła się literówka w adresie.
+        </p>
+
+        <p class="mt-4">Oto kilka pomocnych linków:</p>
+
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+          <a href="/" class="btn btn-primary btn-lg px-4 gap-3">
+            Wróć na stronę główną
+          </a>
+          <a href="/blog" class="btn btn-outline-secondary btn-lg px-4">
+            Zobacz najnowsze wpisy na blogu
+          </a>
+        </div>
+
+        <p class="text-muted mt-5">
+          Możesz również skorzystać z wyszukiwarki w menu, aby znaleźć to, czego
+          szukasz.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .lead {
+    max-width: 51ch;
+  }
+</style>

@@ -17,32 +17,6 @@ main {
   flex: 1;
 }
 
-// --- Image Card Styling ---
-
-.card-img-link {
-  display: block;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  background-color: #e9ecef;
-
-  .card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: fade-in 0.5s ease-in-out forwards;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 // --- Prose Styling for Markdown Content ---
 
 .prose {
@@ -110,24 +84,5 @@ main {
   code {
     font-family: 'Fira Code', monospace;
     font-size: 0.9em; // Default smaller size for inline code
-  }
-}
-
-// A custom class for the profile image wrapper to make it a circle with a shadow
-.profile-image-wrapper {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%; // Makes it a circle
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
-}
-
-// A custom class for the info cards to add a hover effect
-.about-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
   }
 }

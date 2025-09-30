@@ -1,0 +1,10 @@
+# public/robots.txt
+
+User-agent: *
+Allow: /
+
+# Exclude admin pages from being indexed
+Disallow: /admin/
+
+# Tell the search engines where the sitemap is located
+Sitemap: https://devfolio.pl/sitemap-index.xml

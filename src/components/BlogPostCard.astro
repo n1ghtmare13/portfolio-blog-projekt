@@ -1,4 +1,5 @@
 ---
+//src/components/BlogPostCard.astro
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import removeAccents from 'remove-accents';
@@ -87,3 +88,28 @@ const { post, index } = Astro.props;
     </div>
   </article>
 </div>
+
+<style>
+  .card-img-link {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background-color: #e9ecef;
+  }
+
+  .card-img-link .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fade-in 0.5s ease-in-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
