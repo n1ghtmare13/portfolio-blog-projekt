@@ -1,0 +1,44 @@
+---
+// src/components/AboutCard.astro
+// Defines the component's expected properties for type safety.
+export interface Props {
+  title: string;
+  theme: 'danger' | 'success' | 'info';
+}
+
+const { title, theme } = Astro.props;
+---
+
+<div
+  class:list={[
+    'border border-2 rounded-3 p-4 text-center d-flex flex-column h-100 w-100 about-card',
+    `border-${theme}`,
+    `bg-${theme}-subtle`,
+    `text-${theme}-emphasis`,
+  ]}
+>
+  <h2 class="fs-4 fw-semibold mb-3">{title}</h2>
+  <p>
+    {/* Renders child elements passed into this component. */}
+    <slot />
+  </p>
+</div>
+
+{
+  /*
+  Co-located styles are scoped to this component by default.
+  This prevents CSS conflicts and keeps all card-related code in one place.
+*/
+}
+<style>
+  /* A custom class for the info cards to add a hover effect */
+  .about-card {
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+  .about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
+  }
+</style>

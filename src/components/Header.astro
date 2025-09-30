@@ -1,0 +1,169 @@
+---
+// src/components/Header.astro
+
+import GlobalSearchForm from './GlobalSearchForm.astro';
+---
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container flex-wrap">
+    <a class="navbar-brand" href="/">Portfolio</a>
+    <div class="d-flex align-items-center ms-auto ms-lg-0 order-lg-3">
+      {/* --- DESKTOP SEARCH (hidden on mobile) --- */}
+      <div id="desktop-search-wrapper" class="d-none d-lg-flex">
+        <GlobalSearchForm />
+      </div>
+      <button
+        class="btn btn-dark d-none d-lg-inline-block"
+        type="button"
+        id="search-toggle-button"
+        aria-label="Otwórz wyszukiwarkę"
+        aria-expanded="false"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+
+      {/* --- MOBILE CONTROLS (hidden on desktop) --- */}
+      <button
+        class="btn btn-dark d-lg-none"
+        type="button"
+        id="mobile-search-toggle-button"
+        aria-label="Otwórz wyszukiwarkę"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+      <button
+        class="navbar-toggler ms-2 d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#main-nav"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse order-lg-2" id="main-nav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/projekty">Projekty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/o-mnie">O Mnie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/kontakt">Kontakt</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w-100 d-lg-none order-4" id="mobile-search-wrapper">
+      <GlobalSearchForm showCloseButton={true} />
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initializeSearchToggle() {
+    const desktopToggleButton = document.getElementById('search-toggle-button');
+    const mobileToggleButton = document.getElementById('mobile-search-toggle-button');
+    const mobileSearchWrapper = document.getElementById('mobile-search-wrapper');
+    const desktopSearchWrapper = document.getElementById('desktop-search-wrapper');
+
+    if (!desktopToggleButton || !mobileSearchWrapper || !desktopSearchWrapper || !mobileToggleButton) {
+      return;
+    }
+
+    let isSearchActive = false;
+
+    const closeSearch = () => {
+      if (!isSearchActive) return;
+      isSearchActive = false;
+      desktopToggleButton.setAttribute('aria-label', 'Otwórz wyszukiwarkę');
+      desktopToggleButton.setAttribute('aria-expanded', 'false');
+      const desktopIcon = desktopToggleButton.querySelector('i');
+      desktopIcon?.classList.add('bi-search');
+      desktopIcon?.classList.remove('bi-x-lg');
+      desktopSearchWrapper.classList.remove('is-active');
+      mobileToggleButton.classList.remove('d-none');
+      mobileSearchWrapper.classList.remove('is-active');
+    };
+
+    const openSearch = () => {
+      if (isSearchActive) return;
+      isSearchActive = true;
+      const isDesktop = window.innerWidth >= 992;
+      if (isDesktop) {
+        desktopToggleButton.setAttribute('aria-label', 'Zamknij wyszukiwarkę');
+        desktopToggleButton.setAttribute('aria-expanded', 'true');
+        const desktopIcon = desktopToggleButton.querySelector('i');
+        desktopIcon?.classList.remove('bi-search');
+        desktopIcon?.classList.add('bi-x-lg');
+        desktopSearchWrapper.classList.add('is-active');
+      } else {
+        mobileToggleButton.classList.add('d-none');
+        mobileSearchWrapper.classList.add('is-active');
+      }
+      const visibleInput = isDesktop
+        ? desktopSearchWrapper.querySelector('input')
+        : mobileSearchWrapper.querySelector('input');
+      visibleInput?.focus();
+    };
+
+    const toggleSearch = () => {
+      if (isSearchActive) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    };
+
+    desktopToggleButton.addEventListener('click', toggleSearch);
+    mobileToggleButton.addEventListener('click', toggleSearch);
+    const mobileCloseButton = mobileSearchWrapper.querySelector('#close-search-button');
+    if (mobileCloseButton) {
+      mobileCloseButton.addEventListener('click', closeSearch);
+    }
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isSearchActive) {
+        closeSearch();
+      }
+    });
+  }
+  // Run on initial load and after every client-side navigation
+  document.addEventListener('astro:page-load', initializeSearchToggle);
+  initializeSearchToggle(); // Run on initial load
+</script>
+
+<style is:global>
+  #mobile-search-wrapper {
+    transition: max-height 0.35s ease-in-out, margin-top 0.35s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+  #mobile-search-wrapper.is-active {
+    max-height: 100px;
+    margin-top: 0.5rem;
+  }
+  @media (min-width: 992px) {
+    #desktop-search-wrapper {
+      transition: width 0.35s ease-in-out, margin-right 0.35s ease-in-out;
+      width: 0;
+      overflow: hidden;
+    }
+    #desktop-search-wrapper.is-active {
+      width: 300px;
+      margin-right: 0.5rem;
+    }
+    #desktop-search-wrapper #global-search-form {
+      min-width: 300px;
+    }
+    #desktop-search-wrapper.is-active + #search-toggle-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+</style>

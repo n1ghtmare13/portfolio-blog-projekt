@@ -1,0 +1,24 @@
+---
+// src/components/Meta.astro
+
+import { ClientRouter } from 'astro:transitions';
+import Analytics from '../components/Analytics.astro';
+import '@fontsource/fira-code/400.css';
+import '@fontsource/fira-code/700.css';
+
+export interface Props {
+  title: string;
+   description?: string;
+   noIndex?: boolean; // DODAJ TO
+}
+const { title, description, noIndex } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="description" content="Portfolio – projekty i blog." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<ClientRouter />
+<title>{title} | Portfolio Projekt</title>
+{noIndex && <meta name="robots" content="noindex, follow" />}
+<Analytics />

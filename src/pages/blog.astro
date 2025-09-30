@@ -15,26 +15,46 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 <Layout title="Blog">
   <main class="container my-5">
+    <script is:inline>
+      // This inline script runs immediately when the page loads.
+      // Its only purpose is to check if there's a 'q' parameter in the URL.
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+
+      // If there's a query, we hide the posts container to avoid a "flash".
+      // The main script from SearchablePostGrid will show it again with the filtered results.
+      if (query && query.trim() !== '') {
+        const postsContainer = document.getElementById('posts-container');
+        if (postsContainer) {
+          // We use `visibility` instead of `display` to avoid layout shifts.
+          postsContainer.style.visibility = 'hidden';
+        }
+      }
+    </script>
     <section>
       <div class="text-center mb-5">
         <h1 class="display-5">Blog</h1>
         <p class="lead">Artykuły, przemyślenia i tutoriale.</p>
       </div>
 
-      {/**
-       * The SearchablePostGrid component encapsulates all logic for displaying
-       * the post grid and handling the client-side search functionality.
-       * We pass the fetched and sorted posts as a prop.
-       */}
+      {
+        /**
+         * The SearchablePostGrid component encapsulates all logic for displaying
+         * the post grid and handling the client-side search functionality.
+         * We pass the fetched and sorted posts as a prop.
+         */
+      }
       <SearchablePostGrid posts={allPosts} />
     </section>
   </main>
 
-  {/**
-   * The Pagefind UI script is loaded here, on the page where the search
-   * functionality is used. It is a prerequisite for the dynamic `import()`
-   * call within the SearchablePostGrid component.
-   * Loading it as a module is the recommended approach.
-   */}
+  {
+    /**
+     * The Pagefind UI script is loaded here, on the page where the search
+     * functionality is used. It is a prerequisite for the dynamic `import()`
+     * call within the SearchablePostGrid component.
+     * Loading it as a module is the recommended approach.
+     */
+  }
   <script src="/pagefind/pagefind.js" type="module"></script>
 </Layout>

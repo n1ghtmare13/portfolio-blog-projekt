@@ -5,11 +5,12 @@ import { Image } from 'astro:assets';
 
 // 1. Import the profile picture for Astro's optimization
 import profilePicture from '../assets/images/profile_picture.avif';
+import AboutCard from '../components/AboutCard.astro';
 ---
 
 <Layout title="O Mnie">
   <main class="container my-5">
-    {/* HERO SECTION - Built with Bootstrap classes */}
+    {/* HERO SECTION */}
     <header class="text-center mb-5">
       <div class="profile-image-wrapper mx-auto mb-4">
         <Image
@@ -31,47 +32,41 @@ import profilePicture from '../assets/images/profile_picture.avif';
     <div class="row gy-4 align-items-stretch">
       {/* Section 1: "Kim jestem?" */}
       <section class="col-md-6 col-lg-4 d-flex">
-        <div
-          class="border border-2 border-danger rounded-3 p-4 text-center about-card bg-danger-subtle text-danger-emphasis d-flex flex-column h-100 w-100"
-        >
-          <h2 class="fs-4 fw-semibold mb-3">Kim jestem?</h2>
-          <p>
-            Mam 35 lat i od ponad dekady pracuję jako programista. Łączę
-            doświadczenie techniczne z analitycznym podejściem do rozwiązywania
-            problemów, a w swojej pracy stawiam na jakość i skuteczność.
-          </p>
-        </div>
+        <AboutCard title="Kim jestem?" theme="danger">
+          Mam 35 lat i od ponad dekady pracuję jako programista. Łączę
+          doświadczenie techniczne z analitycznym podejściem do rozwiązywania
+          problemów, a w swojej pracy stawiam na jakość i skuteczność.
+        </AboutCard>
       </section>
 
       {/* Section 2: "Czym się zajmuję?" */}
       <section class="col-md-6 col-lg-4 d-flex">
-        <div
-          class="border border-2 border-success rounded-3 p-4 text-center about-card bg-success-subtle text-success-emphasis d-flex flex-column h-100 w-100"
-        >
-          <h2 class="fs-4 fw-semibold mb-3">Czym się zajmuję?</h2>
-          <p>
-            Specjalizuję się w tworzeniu aplikacji webowych. Projektuję
-            rozwiązania dopasowane do potrzeb biznesu, dbając o skalowalność,
-            bezpieczeństwo i zgodność z najlepszymi praktykami
-            programistycznymi.
-          </p>
-        </div>
+        <AboutCard title="Czym się zajmuję?" theme="success">
+          Specjalizuję się w tworzeniu aplikacji webowych. Projektuję
+          rozwiązania dopasowane do potrzeb biznesu, dbając o skalowalność,
+          bezpieczeństwo i zgodność z najlepszymi praktykami programistycznymi.
+        </AboutCard>
       </section>
 
       {/* Section 3: "Moje zainteresowania" */}
       <section class="col-md-6 col-lg-4 d-flex">
-        <div
-          class="border border-2 border-info rounded-3 p-4 text-center about-card bg-info-subtle text-info-emphasis d-flex flex-column h-100 w-100"
-        >
-          <h2 class="fs-4 fw-semibold mb-3">Moje zainteresowania</h2>
-          <p>
-            Poza pracą chętnie rozwijam swoje umiejętności, śledząc nowe
-            technologie i trendy w branży IT. Interesuję się również
-            architekturą oprogramowania, automatyzacją procesów oraz projektami
-            open source.
-          </p>
-        </div>
+        <AboutCard title="Moje zainteresowania" theme="info">
+          Poza pracą chętnie rozwijam swoje umiejętności, śledząc nowe
+          technologie i trendy w branży IT. Interesuję się również architekturą
+          oprogramowania, automatyzacją procesów oraz projektami open source.
+        </AboutCard>
       </section>
     </div>
   </main>
 </Layout>
+
+<style>
+  /* A custom class for the profile image wrapper to make it a circle with a shadow */
+  .profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+  }
+</style>
