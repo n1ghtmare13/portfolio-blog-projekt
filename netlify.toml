@@ -43,11 +43,11 @@ Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 Content-Security-Policy = """
       default-src 'self';
       script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' static.cloudflareinsights.com giscus.app https://unpkg.com;
-      style-src 'self' 'unsafe-inline' giscus.app;
-      img-src 'self' data: avatars.githubusercontent.com placehold.co;
-      connect-src 'self' cloudflare.com api.github.com cloudflareinsights.com;
+      style-src 'self' 'unsafe-inline' giscus.app https://fonts.googleapis.com;
+      img-src 'self' data: blob: avatars.githubusercontent.com placehold.co raw.githubusercontent.com;
+      connect-src 'self' cloudflare.com api.github.com cloudflareinsights.com https://unpkg.com https://www.githubstatus.com;
       frame-src giscus.app;
-      font-src 'self' data:;
+      font-src 'self' data: https://fonts.gstatic.com;
       object-src 'none';
       form-action 'self';
       frame-ancestors 'none';

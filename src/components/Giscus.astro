@@ -5,11 +5,11 @@
 <div id="giscus-container"></div>
 
 <script>
+  /**
+   * Functions to manage the loading and updating of the Giscus comment system.
+   */
   function addGiscusScript() {
-    //  Check if the script is already added
-    if (document.getElementById('giscus-script')) {
-      return;
-    }
+    if (document.getElementById('giscus-script')) return;
 
     const script = document.createElement('script');
     script.id = 'giscus-script';
@@ -25,7 +25,6 @@
     script.setAttribute('data-input-position', 'top');
     script.setAttribute('data-theme', 'catppuccin_latte');
     script.setAttribute('data-lang', 'pl');
-    script.setAttribute('data-loading', 'lazy');
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
 
@@ -36,10 +35,7 @@
     const iframe = document.querySelector<HTMLIFrameElement>(
       'iframe.giscus-frame'
     );
-    if (!iframe) {
-      addGiscusScript();
-      return;
-    }
+    if (!iframe) return;
 
     iframe.contentWindow?.postMessage(
       { giscus: { setConfig: { term: window.location.pathname } } },
@@ -47,5 +43,20 @@
     );
   }
 
-  document.addEventListener('astro:page-load', updateGiscus);
+  function initializeGiscus() {
+    // Check if the document is already fully loaded
+    if (document.readyState === 'complete') {
+      // If so, load the script immediately.
+      addGiscusScript();
+    } else {
+      // If not, wait for the 'load' event.
+      window.addEventListener('load', addGiscusScript, { once: true });
+    }
+
+    // Regardless, listen for page changes for View Transitions.
+    document.addEventListener('astro:page-load', updateGiscus);
+  }
+
+  // Start the whole logic right away.
+  initializeGiscus();
 </script>
