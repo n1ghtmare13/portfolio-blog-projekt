@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
 
+import path from 'node:path';
+
 /**
  * @see https://astro.build/config
  */
@@ -39,6 +41,17 @@ export default defineConfig({
          * bundling analysis, and it must be loaded as a separate static asset.
          */
         external: ['/pagefind/pagefind.js'],
+      },
+    },
+    server: {
+      fs: {
+        allow: [
+          process.cwd(),
+          path.resolve(process.cwd(), './src/content/blog'),
+        ],
+      },
+      watch: {
+        ignored: ['**/*.crswap', '**/*.(jpeg|jpg|png|gif|svg|webp|avif)'],
       },
     },
   },

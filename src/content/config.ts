@@ -1,3 +1,4 @@
+// File: src/content/config.ts
 import { defineCollection, z, type ImageFunction } from 'astro:content';
 
 const blogCollection = defineCollection({
@@ -5,15 +6,16 @@ const blogCollection = defineCollection({
   schema: ({ image }: { image: ImageFunction }) =>
     z.object({
       title: z.string(),
+      slug_override: z.string().optional(),
       pubDate: z.date(),
       description: z.string(),
       coverImage: image().superRefine((img, ctx) => {
         if (img.format !== 'svg') {
-          if (img.width < 1080) {
+          if (img.width < 900) {
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
               message:
-                'Szerokość dla obrazków rastrowych (JPG, PNG, itp.) musi wynosić co najmniej 1080px.',
+                'Szerokość dla obrazków rastrowych (JPG, PNG, itp.) musi wynosić co najmniej 900px.',
             });
           }
         }

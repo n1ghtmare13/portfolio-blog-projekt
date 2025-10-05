@@ -3,6 +3,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import Giscus from '../../components/Giscus.astro';
 
 /**
  * Generates a static page for each blog post in the collection at build time.
@@ -53,15 +54,27 @@ const { Content } = await post.render();
           </p>
           <hr />
 
-          {/**
-           * The main content of the post is explicitly ignored by Pagefind.
-           * This is a crucial optimization to keep the search index small and relevant,
-           * as our search functionality is intentionally limited to post titles and descriptions.
-           * Those are indexed from the main blog listing page (`/blog`).
-           */}
+          {
+            /**
+             * The main content of the post is explicitly ignored by Pagefind.
+             * This is a crucial optimization to keep the search index small and relevant,
+             * as our search functionality is intentionally limited to post titles and descriptions.
+             * Those are indexed from the main blog listing page (`/blog`).
+             */
+          }
           <div data-pagefind-ignore>
             <Content />
           </div>
+          {
+            /**
+             * Giscus comments section.
+             * The Giscus component handles loading and updating the comment thread
+             * based on the current page's pathname.
+             */
+          }
+          <hr class="my-5" />
+          <h2 class="mb-4">Komentarze</h2>
+          <Giscus />
         </article>
       </div>
     </div>
