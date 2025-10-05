@@ -8,11 +8,17 @@
   /**
    * Functions to manage the loading and updating of the Giscus comment system.
    */
-  function addGiscusScript() {
-    if (document.getElementById('giscus-script')) return;
+  function renderGiscus() {
+    const container = document.getElementById('giscus-container');
+    if (!container) {
+      return;
+    }
+
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
 
     const script = document.createElement('script');
-    script.id = 'giscus-script';
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', 'n1ghtmare13/portfolio-blog-projekt');
     script.setAttribute('data-repo-id', 'R_kgDOPsufQQ');
@@ -28,35 +34,9 @@
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
 
-    document.getElementById('giscus-container')?.appendChild(script);
+    container.appendChild(script);
   }
 
-  function updateGiscus() {
-    const iframe = document.querySelector<HTMLIFrameElement>(
-      'iframe.giscus-frame'
-    );
-    if (!iframe) return;
-
-    iframe.contentWindow?.postMessage(
-      { giscus: { setConfig: { term: window.location.pathname } } },
-      'https://giscus.app'
-    );
-  }
-
-  function initializeGiscus() {
-    // Check if the document is already fully loaded
-    if (document.readyState === 'complete') {
-      // If so, load the script immediately.
-      addGiscusScript();
-    } else {
-      // If not, wait for the 'load' event.
-      window.addEventListener('load', addGiscusScript, { once: true });
-    }
-
-    // Regardless, listen for page changes for View Transitions.
-    document.addEventListener('astro:page-load', updateGiscus);
-  }
-
-  // Start the whole logic right away.
-  initializeGiscus();
+  // Listening for Astro's page load event to re-render Giscus on navigation.
+  document.addEventListener('astro:page-load', renderGiscus);
 </script>
