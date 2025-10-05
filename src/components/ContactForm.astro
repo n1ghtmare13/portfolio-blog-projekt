@@ -17,6 +17,14 @@
   >
     {/* Netlify required hidden inputs */}
     <input type="hidden" name="form-name" value="contact" />
+
+    <input
+      type="hidden"
+      name="subject"
+      id="form-subject"
+      value="Nowa wiadomość z devfolio.pl"
+    />
+
     <p class="d-none">
       <label>
         Don’t fill this out if you’re human: <input name="bot-field" />
@@ -70,7 +78,27 @@
   </form>
 </div>
 
-<!-- Styles for the form container adding a hover effect. -->
+<script>
+  const topicSelect = document.getElementById('topic') as HTMLSelectElement;
+  const subjectInput = document.getElementById(
+    'form-subject'
+  ) as HTMLInputElement;
+
+  if (topicSelect && subjectInput) {
+    topicSelect.addEventListener('change', (event) => {
+      // Get the selected topic from the dropdown
+      const selectedTopic = (event.target as HTMLSelectElement).value;
+
+      // Create a new subject
+      const newSubject = `${selectedTopic} - formularz devfolio.pl`;
+
+      // Update the value of the hidden `subject` field
+      subjectInput.value = newSubject;
+    });
+  }
+</script>
+
+{/* Styles for the form container adding a hover effect. */}
 <style>
   .form-container {
     transition:
