@@ -8,8 +8,8 @@ backend:
   branch: main # The branch where content changes will be saved
 
 # Where the CMS should look for and save media files
-media_folder: "src/assets/images" # Folder where uploaded images will be stored
-public_folder: "/src/assets/images" # How Astro should reference these images
+media_folder: "src/content/blog"
+public_folder: ""
 
 # Definition of your content collections (currently just the blog)
 collections:
@@ -17,14 +17,17 @@ collections:
     label: "Blog Posts" # How the collection is named in the CMS UI
     folder: "src/content/blog" # Where to save new .md files
     create: true # Allow creating new entries
-    slug: "{{slug}}" # How to name new files, e.g., new-post.md
+    slug: "{{fields.slug_override | default('{{title}}')}}" # How slugs are generated
+    media_folder: "{{slug}}"
+    public_folder: "./{{slug}}"
     fields: # The fields that will appear in the editor
       - { label: "Title", name: "title", widget: "string" }
       - {
-          label: "URL Slug",
-          name: "slug",
+          label: "Custom URL Slug (Optional)",
+          name: "slug_override",
           widget: "string",
-          hint: "Krótki identyfikator URL, np. 'js-start'. Używaj tylko małych liter, cyfr i myślników.",
+          required: false, # This field is optional
+          hint: "Jeśli zostawisz puste, URL zostanie wygenerowany z tytułu. Wpisz własny, aby go nadpisać (np. 'moj-wlasny-slug').",
         }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
       - { label: "Description", name: "description", widget: "string" }
