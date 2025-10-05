@@ -1,0 +1,51 @@
+---
+// src/components/Giscus.astro
+---
+
+<div id="giscus-container"></div>
+
+<script>
+  function addGiscusScript() {
+    //  Check if the script is already added
+    if (document.getElementById('giscus-script')) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.id = 'giscus-script';
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', 'n1ghtmare13/portfolio-blog-projekt');
+    script.setAttribute('data-repo-id', 'R_kgDOPsufQQ');
+    script.setAttribute('data-category', 'Komentarze do Postów');
+    script.setAttribute('data-category-id', 'DIC_kwDOPsufQc4Cv1xi');
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', 'catppuccin_latte');
+    script.setAttribute('data-lang', 'pl');
+    script.setAttribute('data-loading', 'lazy');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+
+    document.getElementById('giscus-container')?.appendChild(script);
+  }
+
+  function updateGiscus() {
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      'iframe.giscus-frame'
+    );
+    if (!iframe) {
+      addGiscusScript();
+      return;
+    }
+
+    iframe.contentWindow?.postMessage(
+      { giscus: { setConfig: { term: window.location.pathname } } },
+      'https://giscus.app'
+    );
+  }
+
+  document.addEventListener('astro:page-load', updateGiscus);
+</script>
