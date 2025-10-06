@@ -1,5 +1,6 @@
 ---
 // src/pages/blog/[slug].astro
+
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -37,6 +38,7 @@ const { Content } = await post.render();
               format="avif"
               quality={80}
               class="img-fluid rounded mb-4"
+              transition:name={`blog-image-${post.slug}`}
             />
           )
         }

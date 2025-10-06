@@ -44,30 +44,30 @@ const { showCloseButton = false } = Astro.props;
 </div>
 
 <style>
-  .form-control,
-  .btn-search {
-    background-color: #d2deee !important;
-    border: none !important;
+  .global-search-container .form-control,
+  .global-search-container .btn-search {
+    background-color: #d2deee;
+    border: none;
   }
 
-  .form-control:focus {
+  .global-search-container .form-control:focus {
     box-shadow: none;
-    background-color: #c3d7f0 !important;
+    background-color: #c3d7f0;
   }
 
-  .btn-search {
+  .global-search-container .btn-search {
     color: var(--bs-dark);
     transition:
       background-color 0.2s ease-in-out,
       color 0.2s ease-in-out;
   }
 
-  .btn-search:hover {
-    background-color: var(--bs-dark) !important;
-    color: #ffffff !important;
+  .global-search-container .btn-search:hover {
+    background-color: var(--bs-dark);
+    color: #ffffff;
   }
 
-  .close-search-btn {
+  .global-search-container .close-search-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,7 @@ const { showCloseButton = false } = Astro.props;
     line-height: 1;
   }
 
-  .close-search-btn > i {
+  .global-search-container .close-search-btn > i {
     position: relative;
     top: -1px;
   }

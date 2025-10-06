@@ -1,3 +1,4 @@
+// file: astro.config.mjs
 // @ts-check
 import { defineConfig } from 'astro/config';
 
@@ -15,6 +16,11 @@ export default defineConfig({
    * Required for sitemap and other SEO integrations.
    */
   site: 'https://devfolio.pl',
+
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
 
   integrations: [sitemap(), pagefind()],
 

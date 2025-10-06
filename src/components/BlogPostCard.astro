@@ -39,6 +39,7 @@ const { post, index } = Astro.props;
             quality={80}
             class="card-img-top object-fit-fill"
             loading={index < 2 ? 'eager' : 'lazy'}
+            transition:name={`blog-image-${post.slug}`}
           />
         </a>
       )

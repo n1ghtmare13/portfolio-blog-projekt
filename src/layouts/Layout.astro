@@ -23,16 +23,30 @@ const { title, description, noIndex } = Astro.props;
     <Meta title={title} description={description} noIndex={noIndex} />
   </head>
   <body>
-    <Header />
+    <Header transition:persist="main-header" />
     <slot />
-    <Footer />
+    <Footer transition:persist="main-footer" />
     <script>
+      let isBootstrapLoaded = false;
+
       function initializeBootstrap() {
-        import('bootstrap/dist/js/bootstrap.bundle.min.js');
+        if (!isBootstrapLoaded) {
+          import('bootstrap/dist/js/bootstrap.bundle.min.js');
+          isBootstrapLoaded = true;
+        }
       }
-      // This ensures Bootstrap JS is re-initialized after every client-side navigation.
+
       document.addEventListener('astro:page-load', initializeBootstrap);
-      initializeBootstrap(); // Also run on initial full page load.
+      initializeBootstrap();
+    </script>
+
+    <script>
+      document.addEventListener('astro:before-preparation', () => {
+        history.scrollRestoration = 'manual';
+      });
+      document.addEventListener('astro:page-load', () => {
+        history.scrollRestoration = 'auto';
+      });
     </script>
   </body>
 </html>
