@@ -1,10 +1,10 @@
 ---
-title: "Zrozumieć wskaźniki w języku C — praktyczny przewodnik dla początkujących"
-description: "Dowiedz się, czym są wskaźniki w języku C, jak działają i jak z nich korzystać bez popełniania typowych błędów."
+title: 'Zrozumieć wskaźniki w języku C — praktyczny przewodnik dla początkujących'
+slug_override: 'wskazniki-w-c'
 pubDate: 2025-10-06
-coverImage: wskazniki-w-c/c_image.png
+description: 'Dowiedz się, czym są wskaźniki w języku C, jak działają i jak z nich korzystać bez popełniania typowych błędów.'
+coverImage: ./wskazniki-w-c/c_image.png
 coverAlt: C image
-tags: ["C", "programowanie", "wskaźniki", "poradnik"]
 ---
 
 Wskaźniki to jedno z najpotężniejszych, ale i najbardziej niezrozumianych narzędzi w języku C. Pozwalają one na bezpośredni dostęp do pamięci, przekazywanie danych między funkcjami bez kopiowania oraz dynamiczną alokację pamięci. W tym artykule przyjrzymy się podstawom wskaźników i pokażemy, jak z nich korzystać w praktyce.
@@ -78,8 +78,8 @@ Dynamiczna pamięć daje elastyczność, ale wymaga odpowiedzialności — każd
 
 ## Typowe błędy przy pracy ze wskaźnikami
 
-1. **Dereferencja pustego wskaźnika (NULL)** — zawsze sprawdzaj, czy wskaźnik nie jest `NULL`, zanim go użyjesz.  
-2. **Użycie wskaźnika po zwolnieniu pamięci** — po `free()` wskaźnik warto ustawić na `NULL`.  
+1. **Dereferencja pustego wskaźnika (NULL)** — zawsze sprawdzaj, czy wskaźnik nie jest `NULL`, zanim go użyjesz.
+2. **Użycie wskaźnika po zwolnieniu pamięci** — po `free()` wskaźnik warto ustawić na `NULL`.
 3. **Zły typ wskaźnika** — pamiętaj, że `int *` nie jest tym samym co `float *`.
 
 ## Podsumowanie

@@ -1,11 +1,10 @@
 ---
-title: "Podstawy SQL: Jak zacząć pracę z bazami danych"
-description: "Naucz się podstaw SQL, odkryj tajniki baz danych i zdobądź praktyczne umiejętności potrzebne do efektywnej pracy z danymi."
+title: 'Podstawy SQL: Jak zacząć pracę z bazami danych'
+slug_override: 'podstawy-sql'
 pubDate: 2025-09-06
-tags: ["SQL", "bazy danych", "programowanie", "początkujący"]
-category: "programowanie"
-coverImage: "podstawy-sql/SQL_image.png"
-coverAlt: "PHP image"
+description: 'Naucz się podstaw SQL, odkryj tajniki baz danych i zdobądź praktyczne umiejętności potrzebne do efektywnej pracy z danymi.'
+coverImage: ./podstawy-sql/SQL_image.png
+coverAlt: SQL image
 ---
 
 SQL (Structured Query Language) to język służący do pracy z bazami danych. W tym poradniku pokażemy, jak zacząć, tworzyć tabele, wstawiać dane i wykonywać podstawowe zapytania.

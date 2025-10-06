@@ -1,11 +1,10 @@
 ---
-title: "Wprowadzenie do programowania w C#: Twoja pierwsza aplikacja desktopowa"
-description: "Naucz się podstaw C#, odkryj możliwości programowania obiektowego i zdobądź praktyczne umiejętności potrzebne do tworzenia aplikacji."
+title: 'Wprowadzenie do programowania w C#: Twoja pierwsza aplikacja desktopowa'
+slug_override: 'programowanie-w-csharp'
 pubDate: 2025-10-01
-tags: ["C#", "programowanie", "desktop", "aplikacje"]
-category: "programowanie"
-coverImage: "programowanie-w-csharp/C_image2.png"
-coverAlt: "C# image"
+description: 'Naucz się podstaw C#, odkryj możliwości programowania obiektowego i zdobądź praktyczne umiejętności potrzebne do tworzenia aplikacji.'
+coverImage: ./programowanie-w-csharp/C_image2.png
+coverAlt: C# image
 ---
 
 C# to język stworzony przez Microsoft, popularny w tworzeniu aplikacji desktopowych, gier i aplikacji webowych. W tym poradniku pokażemy, jak rozpocząć przygodę z C# i stworzyć prostą aplikację desktopową.

@@ -1,11 +1,10 @@
 ---
-title: "Wstęp do programowania w Kotlin: Tworzenie aplikacji na Androida"
-description: "Poznaj Kotlin, nowoczesny język programowania, i odkryj, jak tworzyć wydajne, bezpieczne oraz nowoczesne aplikacje mobilne i webowe."
+title: 'Wstęp do programowania w Kotlin: Tworzenie aplikacji na Androida'
+slug_override: 'wstep-do-kotlin'
 pubDate: 2025-07-07
-tags: ["Kotlin", "Android", "programowanie", "początkujący"]
-category: "programowanie"
-coverImage: "wstep-do-kotlin/Kotlin_image.png"
-coverAlt: "Kotlin image"
+description: 'Poznaj Kotlin, nowoczesny język programowania, i odkryj, jak tworzyć wydajne, bezpieczne oraz nowoczesne aplikacje mobilne i webowe.'
+coverImage: './wstep-do-kotlin/Kotlin_image.png'
+coverAlt: 'Kotlin image'
 ---
 
 Kotlin to język stworzony przez JetBrains, który stał się oficjalnym językiem Androida. W tym poradniku pokażemy, jak zacząć pisać aplikacje w Kotlin dla początkujących.

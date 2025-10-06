@@ -1,11 +1,10 @@
 ---
-title: "Wstęp do Rust: Bezpieczne i szybkie programowanie systemowe"
-description: "Poznaj Rust, język stawiający na bezpieczeństwo i wydajność, i odkryj, jak tworzyć szybkie oraz niezawodne aplikacje."
+title: 'Wstęp do Rust: Bezpieczne i szybkie programowanie systemowe'
+slug_override: 'wstep-do-rust'
 pubDate: 2025-09-16
-tags: ["Rust", "programowanie", "systemowe", "bezpieczeństwo"]
-category: "programowanie"
-coverImage: "wstep-do-rust/Rust_image.png"
-coverAlt: "Rust image"
+description: 'Poznaj Rust, język stawiający na bezpieczeństwo i wydajność, i odkryj, jak tworzyć szybkie oraz niezawodne aplikacje.'
+coverImage: './wstep-do-rust/Rust_image.png'
+coverAlt: 'Rust image'
 ---
 
 Rust to język programowania systemowego, który zdobywa coraz większą popularność dzięki swojej szybkości i bezpieczeństwu pamięci. W tym poradniku pokażemy, jak zacząć przygodę z Rustem, tworzyć proste programy i zrozumieć jego podstawowe koncepcje.

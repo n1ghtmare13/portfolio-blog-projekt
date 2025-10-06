@@ -1,11 +1,10 @@
 ---
-title: "Tworzenie prostych aplikacji w Go dla początkujących"
-description: "Naucz się tworzyć aplikacje w Go, poznaj prostotę i wydajność języka oraz zdobądź praktyczne umiejętności programistyczne."
+title: Tworzenie prostych aplikacji w Go dla początkujących
+slug_override: 'tworzenie-aplikacji-w-go'
 pubDate: 2025-08-27
-tags: ["Go", "programowanie", "aplikacje", "backend"]
-category: "programowanie"
-coverImage: "tworzenie-aplikacji-w-go/Go_image.png"
-coverAlt: "Go image"
+description: 'Naucz się tworzyć aplikacje w Go, poznaj prostotę i wydajność języka oraz zdobądź praktyczne umiejętności programistyczne.'
+coverImage: ./tworzenie-aplikacji-w-go/Go_image.png
+coverAlt: Go image
 ---
 
 Go, znany także jako Golang, to język stworzony przez Google, który łączy prostotę składni z wysoką wydajnością. W tym poradniku pokażemy, jak zacząć tworzyć proste aplikacje w Go.
