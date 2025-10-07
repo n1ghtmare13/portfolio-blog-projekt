@@ -1,36 +1,55 @@
 ---
-// src/pages/blog/[slug].astro
+// File: src/pages/blog/[slug].astro
 
 import Layout from '../../layouts/Layout.astro';
-// 1. Import the type for CollectionEntry
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Giscus from '../../components/Giscus.astro';
 
-/**
- * Generates a static page for each blog post in the collection at build time.
- * This is Astro's implementation of Static Site Generation (SSG) for dynamic routes.
- * @see https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
- */
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
-  // 2. We also add an explicit type for 'post' here
   return allPosts.map((post: CollectionEntry<'blog'>) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }
 
-// 3. We define the type of props that this page expects
 interface Props {
   post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+const ogImageUrl = new URL(post.data.coverImage.src, Astro.site);
 ---
 
-<Layout title={post.data.title}>
+}
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={ogImageUrl}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        description: post.data.description,
+        image: ogImageUrl.href,
+        datePublished: post.data.pubDate.toISOString(),
+        author: {
+          '@type': 'Person',
+          name: 'Jacek Kucharski',
+          url: new URL('/o-mnie', Astro.site).href,
+        },
+      })}
+    />
+  </Fragment>
+
   <main class="container my-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -63,24 +82,10 @@ const { Content } = await post.render();
           </p>
           <hr />
 
-          {
-            /**
-             * The main content of the post is explicitly ignored by Pagefind.
-             * This is a crucial optimization to keep the search index small and relevant,
-             * as our search functionality is intentionally limited to post titles and descriptions.
-             * Those are indexed from the main blog listing page (`/blog`).
-             */
-          }
           <div data-pagefind-ignore>
             <Content />
           </div>
-          {
-            /**
-             * Giscus comments section.
-             * The Giscus component handles loading and updating the comment thread
-             * based on the current page's pathname.
-             */
-          }
+
           <hr class="my-5" />
           <h2 class="mb-4">Komentarze</h2>
           <Giscus />

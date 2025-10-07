@@ -1,13 +1,12 @@
 ---
 // src/pages/404.astro
 import Layout from '../layouts/Layout.astro';
+const pageTitle = '404 - Strona Nie Znaleziona';
+const pageDesc =
+  'Niestety, strona o podanym adresie nie istnieje na tej witrynie.';
 ---
 
-<Layout
-  title="Strona Nie Znaleziona"
-  description="Niestety, strona o podanym adresie nie istnieje na tej witrynie."
-  noIndex={true}
->
+<Layout title={pageTitle} description={pageDesc} noIndex={true}>
   <main class="container my-5 text-center">
     <div class="row justify-content-center">
       <div class="col-md-8">

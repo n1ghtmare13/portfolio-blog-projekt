@@ -3,9 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 import { projectsData, type ProjectData } from '../data/projects';
+const pageTitle = 'Projekty - Portfolio Jacka Kucharskiego';
+const pageDesc =
+  'Przeglądaj wybrane projekty webowe autorstwa Jacka Kucharskiego. Poznaj technologie i rozwiązania użyte w aplikacjach React, Astro, Node.js i nie tylko.';
 ---
 
-<Layout title="Projekty">
+<Layout title={pageTitle} description={pageDesc}>
   <main class="container my-5">
     <section id="projects">
       <header class="text-center mb-5">
@@ -17,9 +20,11 @@ import { projectsData, type ProjectData } from '../data/projects';
       </header>
 
       <div class="row row-cols-1 row-cols-lg-2 g-4">
-        {projectsData.map((project: ProjectData, index: number) => (
-          <ProjectCard {...project} index={index} />
-        ))}
+        {
+          projectsData.map((project: ProjectData, index: number) => (
+            <ProjectCard {...project} index={index} />
+          ))
+        }
       </div>
     </section>
   </main>

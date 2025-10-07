@@ -1,9 +1,12 @@
 ---
 //src/pages/kontakt/sukces.astro
 import Layout from '../../layouts/Layout.astro';
+const pageTitle = 'Wiadomość Wysłana - Dziękuję!';
+const pageDesc =
+  'Strona podziękowania za wysłanie wiadomości poprzez formularz kontaktowy.';
 ---
 
-<Layout title="Wiadomość Wysłana" description='Strona podziękowania za wysłanie wiadomości poprzez formularz kontaktowy.' noIndex={true}>
+<Layout title={pageTitle} description={pageDesc} noIndex={true}>
   <main class="container my-5 text-center">
     <div class="py-5">
       <h1 class="display-4">Dziękuję za wiadomość!</h1>

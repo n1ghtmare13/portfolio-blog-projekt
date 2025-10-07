@@ -6,9 +6,13 @@ import { Image } from 'astro:assets';
 // 1. Import the profile picture for Astro's optimization
 import profilePicture from '../assets/images/profile_picture.avif';
 import AboutCard from '../components/AboutCard.astro';
+
+const pageTitle = 'O Mnie - Jacek Kucharski';
+const pageDesc =
+  'Poznaj Jacka Kucharskiego - programistę z pasją do czystego kodu i optymalizacji. Dowiedz się więcej o moim doświadczeniu i filozofii pracy jako Web Developer.';
 ---
 
-<Layout title="O Mnie">
+<Layout title={pageTitle} description={pageDesc}>
   <main class="container my-5">
     {/* HERO SECTION */}
     <header class="text-center mb-5">

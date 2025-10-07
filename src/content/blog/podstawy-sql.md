@@ -3,7 +3,7 @@ title: 'Podstawy SQL: Jak zacząć pracę z bazami danych'
 slug_override: 'podstawy-sql'
 pubDate: 2025-09-06
 description: 'Naucz się podstaw SQL, odkryj tajniki baz danych i zdobądź praktyczne umiejętności potrzebne do efektywnej pracy z danymi.'
-coverImage: ./podstawy-sql/SQL_image.png
+coverImage: ./podstawy-sql/sql-cover.jpg
 coverAlt: SQL image
 ---
 

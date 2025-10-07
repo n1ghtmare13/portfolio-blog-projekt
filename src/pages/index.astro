@@ -1,4 +1,6 @@
 ---
+// File: src/pages/index.astro
+
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
@@ -7,8 +9,11 @@ import LatestBlogPosts from '../components/LatestBlogPosts.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 
 import { getCollection, type CollectionEntry } from 'astro:content';
-
 import { projectsData } from '../data/projects';
+
+const pageTitle = 'Jacek Kucharski - Full-Stack Web Developer';
+const pageDesc =
+  'Portfolio i blog Jacka Kucharskiego, Full-Stack Developera specjalizującego się w JavaScript, React i Node.js. Zobacz moje projekty i przeczytaj artykuły o nowoczesnym web developmencie.';
 
 const allPosts = await getCollection('blog');
 
@@ -21,7 +26,7 @@ const latestPosts = allPosts.slice(0, 2);
 const featuredProjects = projectsData.slice(0, 3);
 ---
 
-<Layout title="Jacek Kucharski - Full-Stack Web Developer">
+<Layout title={pageTitle} description={pageDesc}>
   <main>
     <Hero />
     <FeaturedProjects projects={featuredProjects} />

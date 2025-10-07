@@ -5,6 +5,10 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import SearchablePostGrid from '../components/SearchablePostGrid.astro';
 
+const pageTitle = 'Blog Techniczny - Nowoczesny Web Development';
+const pageDesc =
+  'Artykuły, poradniki i przemyślenia na temat web developmentu. Odkryj treści o JavaScript, performance, Astro, React i najlepszych praktykach w programowaniu.';
+
 /**
  * Fetches all blog posts from the content collection and sorts them
  * in descending order by publication date.
@@ -17,7 +21,7 @@ allPosts.sort(
 );
 ---
 
-<Layout title="Blog">
+<Layout title={pageTitle} description={pageDesc}>
   <main class="container my-5">
     <script is:inline>
       // This inline script runs immediately when the page loads.

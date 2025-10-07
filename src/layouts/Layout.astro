@@ -1,5 +1,5 @@
 ---
-// src/layouts/Layout.astro
+// File: src/layouts/Layout.astro
 
 import '../styles/main.scss';
 import Meta from '../components/Meta.astro';
@@ -12,24 +12,26 @@ import '@fontsource/fira-code/700.css';
 
 export interface Props {
   title: string;
-  description?: string;
+  description: string;
   noIndex?: boolean;
+  ogImage?: URL;
+  ogType?: 'website' | 'article';
 }
-const { title, description, noIndex } = Astro.props;
+
+const { title, description, noIndex, ogImage, ogType } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="pl">
   <head>
-    <Meta title={title} description={description} noIndex={noIndex} />
+    <Meta {title} {description} {noIndex} {ogImage} {ogType} />
+    <slot name="head" />
   </head>
   <body>
     <Header transition:persist="main-header" />
     <slot />
     <Footer transition:persist="main-footer" />
-
     <PWAPrompt />
-    
     <script>
       let isBootstrapLoaded = false;
 

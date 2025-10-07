@@ -3,7 +3,7 @@ title: 'Wprowadzenie do programowania w C#: Twoja pierwsza aplikacja desktopowa'
 slug_override: 'programowanie-w-csharp'
 pubDate: 2025-10-01
 description: 'Naucz się podstaw C#, odkryj możliwości programowania obiektowego i zdobądź praktyczne umiejętności potrzebne do tworzenia aplikacji.'
-coverImage: ./programowanie-w-csharp/C_image2.png
+coverImage: ./programowanie-w-csharp/c-sharp.png
 coverAlt: C# image
 ---
 

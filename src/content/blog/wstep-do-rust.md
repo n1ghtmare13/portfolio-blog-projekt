@@ -3,16 +3,18 @@ title: 'Wstęp do Rust: Bezpieczne i szybkie programowanie systemowe'
 slug_override: 'wstep-do-rust'
 pubDate: 2025-09-16
 description: 'Poznaj Rust, język stawiający na bezpieczeństwo i wydajność, i odkryj, jak tworzyć szybkie oraz niezawodne aplikacje.'
-coverImage: './wstep-do-rust/Rust_image.png'
+coverImage: './wstep-do-rust/rust-cover.jpg'
 coverAlt: 'Rust image'
 ---
 
 Rust to język programowania systemowego, który zdobywa coraz większą popularność dzięki swojej szybkości i bezpieczeństwu pamięci. W tym poradniku pokażemy, jak zacząć przygodę z Rustem, tworzyć proste programy i zrozumieć jego podstawowe koncepcje.
 
 ## Dlaczego Rust?
+
 Rust łączy wydajność języków niskiego poziomu, takich jak C i C++, z nowoczesnym podejściem do bezpieczeństwa pamięci. Jego system własności (ownership) i reguły borrowingu sprawiają, że wiele typowych błędów w zarządzaniu pamięcią jest wykrywanych już na etapie kompilacji.
 
 ## Instalacja
+
 Aby rozpocząć pracę z Rust, najlepiej zainstalować `rustup`, narzędzie zarządzające wersjami Rust:
 
 ```bash
@@ -26,6 +28,7 @@ rustc --version
 ```
 
 ## Pierwszy program
+
 Tworzymy prosty program „Hello, Rust!”:
 
 ```rust
@@ -42,6 +45,7 @@ rustc main.rs
 ```
 
 ## Podstawy składni
+
 - **Zmienne i mutowalność:** Rust domyślnie traktuje zmienne jako niemutowalne. Aby zmienić wartość, używamy `mut`.
 
 ```rust
@@ -60,6 +64,7 @@ fn add(a: i32, b: i32) -> i32 {
 - **Kontrola przepływu:** Rust obsługuje `if`, `else`, `loop`, `while` i `for`.
 
 ## Kolekcje
+
 Rust oferuje m.in. `Vec` (wektory) i `HashMap`:
 
 ```rust
@@ -72,7 +77,9 @@ scores.insert("Alice", 10);
 ```
 
 ## Moduły i pakiety
+
 Organizacja kodu w moduły (`mod`) i pakiety (`crate`) pozwala na łatwe zarządzanie większymi projektami.
 
 ## Podsumowanie
+
 Rust to doskonały wybór, jeśli zależy Ci na bezpieczeństwie pamięci i wydajności. Dzięki prostym narzędziom i systemowi typów nauka języka staje się przyjemna, nawet dla początkujących.

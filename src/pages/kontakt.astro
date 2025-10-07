@@ -3,9 +3,12 @@
 
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
+const pageTitle = 'Kontakt - Jacek Kucharski';
+const pageDesc =
+  'Masz pomysł na projekt lub propozycję współpracy? Skontaktuj się z Jackiem Kucharskim poprzez formularz lub znajdź mnie w mediach społecznościowych.';
 ---
 
-<Layout title="Kontakt">
+<Layout title={pageTitle} description={pageDesc}>
   <main class="container my-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">

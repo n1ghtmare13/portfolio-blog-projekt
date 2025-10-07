@@ -11,6 +11,7 @@
     "update-search": "bun run build && rimraf public/pagefind && copyfiles -u 1 \"dist/pagefind/**/*\" public"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "3.6.0",
     "@fontsource/fira-code": "^5.2.6",
     "@popperjs/core": "^2.11.8",

@@ -9,9 +9,9 @@ const isProd = import.meta.env.PROD;
   isProd && (
     <script define:vars={{ token: CLOUDFLARE_TOKEN }}>
       /**
-       * That function dynamically reinjects the Cloudflare script into the document head.
-       * This is necessary because Astro's View Transitions can cause the script to be lost
-       * during client-side navigation, leading to loss of analytics tracking.
+       * This function dynamically reinjects the Cloudflare script into the document head.
+       * It's necessary because Astro's View Transitions can remove the script during
+       * client-side navigation, which would lead to a loss of analytics tracking.
        */
       function reinjectCloudflareScript() {
         // Find and remove any existing Cloudflare script to avoid duplicates.
@@ -25,18 +25,18 @@ const isProd = import.meta.env.PROD;
         newScript.defer = true;
         newScript.src = 'https://static.cloudflareinsights.com/beacon.min.js';
 
-        // Set the attribute with the token we got from `define:vars`.
+        // Set the data-cf-beacon attribute with the token from `define:vars`.
         newScript.setAttribute('data-cf-beacon', JSON.stringify({ token: token }));
 
-        // Add the new script to the document head.
+        // Add the new script to the document head to activate it.
         document.head.appendChild(newScript);
       }
 
-      // Listen for the `astro:page-load` event that Astro emits
-      // after every View Transitions navigation when the new page is in the DOM.
+      // Listen for the `astro:page-load` event, which Astro emits after every
+      // client-side navigation is complete.
       document.addEventListener('astro:page-load', reinjectCloudflareScript);
 
-      // Run the function once, on the initial full page load.
+      // Run the function once on the initial, full page load.
       reinjectCloudflareScript();
     </script>
   )
