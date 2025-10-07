@@ -46,7 +46,7 @@ Content-Security-Policy = """
       style-src 'self' 'unsafe-inline' giscus.app https://fonts.googleapis.com;
       img-src 'self' data: blob: avatars.githubusercontent.com placehold.co raw.githubusercontent.com;
       connect-src 'self' cloudflare.com api.github.com cloudflareinsights.com https://unpkg.com https://www.githubstatus.com;
-      frame-src giscus.app;
+      frame-src giscus.app devfolio.pl;
       font-src 'self' data: https://fonts.gstatic.com;
       object-src 'none';
       form-action 'self';
