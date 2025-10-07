@@ -1,0 +1,78 @@
+---
+// file: src/components/FeaturedProjects.astro
+import type { ProjectData } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+
+// We change the expected props type to ProjectData[]
+export interface Props {
+  projects: ProjectData[];
+}
+const { projects } = Astro.props;
+---
+
+<section class="featured-projects py-5 bg-body-tertiary">
+  <div class="container">
+    <header class="text-center mb-5">
+      <h2 class="display-5 fw-bold">Wybrane Projekty</h2>
+      <p class="lead text-muted">
+        Oto kilka projektów, które pokazują moje podejście do tworzenia
+        nowoczesnych aplikacji.
+      </p>
+    </header>
+    <div class="row row-cols-1 row-cols-lg-3 g-4">
+      {
+        projects.map((project, index) => (
+          <div class="col project-card-wrapper">
+            <ProjectCard {...project} index={index} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="text-center mt-5">
+      <a href="/projekty" class="btn btn-outline-primary btn-lg"
+        >Zobacz wszystkie projekty</a
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupScrollAnimation() {
+    if (!('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const cards = document.querySelectorAll('.project-card-wrapper');
+    cards.forEach((card) => observer.observe(card));
+  }
+  document.addEventListener('astro:page-load', setupScrollAnimation);
+  setupScrollAnimation();
+</script>
+
+<style>
+  .project-card-wrapper {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+  .project-card-wrapper.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project-card-wrapper:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .project-card-wrapper:nth-child(3) {
+    transition-delay: 0.4s;
+  }
+</style>

@@ -4,8 +4,8 @@ import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
-
 import path from 'node:path';
+import vitePwa from '@vite-pwa/astro';
 
 /**
  * @see https://astro.build/config
@@ -22,7 +22,36 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
 
-  integrations: [sitemap(), pagefind()],
+  integrations: [
+    sitemap(),
+    pagefind(),
+    // Here is the full PWA configuration
+    vitePwa({
+      // Defines the update strategy for the service worker. 'prompt' is best for UX.
+      // It shows a notification to the user when a new version is available.
+      registerType: 'prompt',
+
+      // We set this to false because we already have our own custom manifest file in /public.
+      // This prevents the integration from generating a new one.
+      manifest: false,
+
+      // Workbox configuration for generating the service worker.
+      workbox: {
+        // Defines which files should be pre-cached for offline access.
+        globPatterns: [
+          '**/*.{html,js,css,woff,woff2}',
+          '**/*.{svg,png,jpg,jpeg,gif,webp,avif}',
+        ],
+        navigateFallback: '/404',
+      },
+
+      // Development options.
+      devOptions: {
+        // Enables the PWA and service worker during local development for easy testing.
+        enabled: true,
+      },
+    }),
+  ],
 
   markdown: {
     shikiConfig: {

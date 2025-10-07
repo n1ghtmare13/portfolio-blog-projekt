@@ -1,0 +1,59 @@
+---
+// file: src/components/Logo.astro
+---
+
+<svg
+  width="212"
+  height="60"
+  viewBox="0 0 205 60"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="logoTitle"
+>
+  <title id="logoTitle">Devfolio</title>
+
+  <defs>
+    <style>
+      .icon-stroke {
+        stroke: #0d6efd;
+        stroke-width: 4.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        transition: stroke 0.2s ease;
+      }
+
+      .icon-group:hover .icon-stroke {
+        stroke: #0b5ed7;
+      }
+
+      .text-base {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        dominant-baseline: middle;
+      }
+
+      .logo-text-main {
+        fill: currentColor;
+      }
+
+      .text-primary {
+        fill: #0d6efd;
+      }
+    </style>
+  </defs>
+
+  <g class="icon-group">
+    <path class="icon-stroke" d="M 22 15 L 8 30 L 22 45"></path>
+    <path class="icon-stroke" d="M 30 45 L 46 15"></path>
+    <path class="icon-stroke" d="M 54 15 L 68 30 L 54 45"></path>
+  </g>
+
+  <text x="85" y="34" class="text-base">
+    <tspan class="logo-text-main">dev</tspan><tspan class="text-primary"
+      >folio</tspan
+    >
+  </text>
+</svg>

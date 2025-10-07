@@ -1,12 +1,12 @@
 {
-  "name": "Devfolio",
-  "short_name": "devfolio",
-  "description": "Portfolio i blog deweloperski.",
+  "name": "Devfolio - Jacek Kucharski",
+  "short_name": "Devfolio",
+  "description": "Portfolio i blog deweloperski Jacka Kucharskiego.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0d6efd",
+  "theme_color": "#212529",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -31,6 +31,29 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Moje Projekty",
+      "short_name": "Projekty",
+      "description": "Zobacz moje najlepsze prace",
+      "url": "/projekty",
+      "icons": [{ "src": "/favicon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Blog Techniczny",
+      "short_name": "Blog",
+      "description": "Przeczytaj najnowsze artykuły",
+      "url": "/blog",
+      "icons": [{ "src": "/favicon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Napisz do Mnie",
+      "short_name": "Kontakt",
+      "description": "Skontaktuj się w sprawie współpracy",
+      "url": "/kontakt",
+      "icons": [{ "src": "/favicon-96x96.png", "sizes": "96x96" }]
     }
   ]
 }

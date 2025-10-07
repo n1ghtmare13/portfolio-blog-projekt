@@ -52,3 +52,35 @@ Content-Security-Policy = """
       form-action 'self';
       frame-ancestors 'none';
     """
+# ===================================================================
+# === SECTION OF AGGRESSIVE CACHING ===
+# ===================================================================
+
+# Assets that are versioned (i.e., their URLs change when their content changes)
+# can be cached aggressively for better performance and reduced bandwidth.
+[[headers]]
+for = "/_astro/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# 2. Images im tje public folder.
+[[headers]]
+for = "/images/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# 3. Fonts in the public folder.
+[[headers]]
+for = "/fonts/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+
+# --- Headers for HTML files (to ensure changes are always visible) ---
+[[headers]]
+for = "/*.html"
+[headers.values]
+# "public" - can be cached by CDN.
+# "max-age=0" - the browser must immediately consider its version stale.
+# "must-revalidate" - the browser MUST check with the server if a new version exists before using the cached copy.
+Cache-Control = "public, max-age=0, must-revalidate"

@@ -1,3 +1,7 @@
+/* stylelint-disable color-function-alias-notation */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable alpha-value-notation */
+
 /* src/styles/_style.scss */
 
 // --- Global Layout & UX ---
@@ -10,10 +14,15 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bs-light);
 }
 
 main {
   flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 // --- Prose Styling for Markdown Content ---
@@ -84,4 +93,15 @@ main {
     font-family: 'Fira Code', monospace;
     font-size: 0.9em; // Default smaller size for inline code
   }
+}
+
+// --- Component Overrides ---
+
+// Remove border and focus shadow from the Bootstrap navbar toggler (hamburger)
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
