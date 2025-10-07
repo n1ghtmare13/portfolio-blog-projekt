@@ -84,3 +84,9 @@ for = "/*.html"
 # "max-age=0" - the browser must immediately consider its version stale.
 # "must-revalidate" - the browser MUST check with the server if a new version exists before using the cached copy.
 Cache-Control = "public, max-age=0, must-revalidate"
+
+# --- SPA / Client Router fallback for Astro ---
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
