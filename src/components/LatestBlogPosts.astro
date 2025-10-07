@@ -1,0 +1,33 @@
+---
+// file: src/components/LatestBlogPosts.astro
+import type { CollectionEntry } from 'astro:content';
+import BlogPostCard from './BlogPostCard.astro';
+
+export interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+const { posts } = Astro.props;
+---
+
+<section class="latest-posts py-5 bg-body-tertiary">
+  <div class="container">
+    <header class="text-center mb-5">
+      <h2 class="display-5 fw-bold">Najnowsze Wpisy na Blogu</h2>
+      <p class="lead text-muted">
+        Dzielę się wiedzą, przemyśleniami i nowinkami ze świata kodu.
+      </p>
+    </header>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row">
+          {posts.map((post, index) => <BlogPostCard {post} {index} />)}
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="/blog" class="btn btn-outline-primary btn-lg"
+        >Odkryj więcej artykułów</a
+      >
+    </div>
+  </div>
+</section>

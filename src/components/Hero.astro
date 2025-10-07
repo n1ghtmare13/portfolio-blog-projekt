@@ -1,0 +1,290 @@
+---
+// src/components/Hero.astro
+---
+
+<header class="hero-section text-center text-lg-start">
+  <div class="container py-5">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7">
+        <h1 class="display-3 fw-bold mb-3">Jacek Kucharski</h1>
+        <div class="typing-container mb-4">
+          <p class="lead fw-normal text-muted mb-0">
+            Jestem
+            <span class="typed-text"></span>
+            <span class="cursor">&nbsp;</span>
+          </p>
+        </div>
+        <p class="hero-description mb-4">
+          Od ponad dekady przekształcam złożone pomysły w <strong
+            >błyskawiczne i skalowalne aplikacje webowe</strong
+          >. Łączę pasję do czystego kodu z najnowszymi technologiami, takimi
+          jak React, Node.js i Astro, aby dostarczać rozwiązania najwyższej
+          jakości.
+        </p>
+        <div
+          class="d-grid gap-3 d-sm-flex justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/projekty"
+            class="btn btn-primary btn-lg px-4 gap-3 d-inline-flex align-items-center"
+            >Zobacz moje projekty <i class="bi bi-arrow-right-short"></i></a
+          >
+          <a
+            href="/kontakt"
+            class="btn btn-outline-secondary btn-lg px-4 d-inline-flex align-items-center"
+            >Skontaktuj się ze mną</a
+          >
+        </div>
+      </div>
+
+      <!-- Column with technology visualization -->
+      <div class="col-lg-5 text-center">
+        <div class="tech-grid">
+          <div class="tech-icon" title="JavaScript">
+            <i class="bi bi-javascript"></i>
+          </div>
+          <div class="tech-icon" title="TypeScript">
+            <i class="bi bi-typescript"></i>
+          </div>
+          <div class="tech-icon" title="React">
+            <i class="bi bi-filetype-jsx"></i>
+          </div>
+          <div class="tech-icon" title="Node.js">
+            <i class="bi bi-hexagon-fill"></i>
+          </div>
+          <div class="tech-icon" title="Astro">
+            <i class="bi bi-rocket-takeoff-fill"></i>
+          </div>
+          <div class="tech-icon" title="CSS3">
+            <i class="bi bi-css"></i>
+          </div>
+          <div class="tech-icon" title="Bootstrap">
+            <i class="bi bi-bootstrap-fill"></i>
+          </div>
+          <div class="tech-icon" title="Git">
+            <i class="bi bi-git"></i>
+          </div>
+          <div class="tech-icon" title="Performance">
+            <i class="bi bi-speedometer2"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  let activeTimeouts: (number | NodeJS.Timeout)[] = [];
+
+  function cleanupPreviousAnimation() {
+    activeTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+    activeTimeouts = []; // Resetowanie tablicy
+  }
+
+  function setupTypingEffect() {
+    cleanupPreviousAnimation();
+
+    const typedTextSpan = document.querySelector('.typed-text');
+    const cursorSpan = document.querySelector('.cursor');
+
+    if (typedTextSpan && cursorSpan) {
+      initTypingAnimation(
+        typedTextSpan as HTMLElement,
+        cursorSpan as HTMLElement
+      );
+    }
+  }
+
+  function initTypingAnimation(
+    typedTextSpan: HTMLElement,
+    cursorSpan: HTMLElement
+  ) {
+    const textArray = [
+      'Full-Stack Developerem.',
+      'entuzjastą czystego kodu.',
+      'ekspertem od wydajności.',
+      'fanem nowoczesnych technologii.',
+    ];
+    const typingDelay = 100;
+    const erasingDelay = 50;
+    const newTextDelay = 2000;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    /*
+     * @param callback - Function to be executed after the delay.
+     * @param delay - Delay in milliseconds.
+     */
+    function setSafeTimeout(callback: () => void, delay: number) {
+      const timeoutId = setTimeout(callback, delay);
+      activeTimeouts.push(timeoutId);
+    }
+
+    function type() {
+      if (charIndex < textArray[textArrayIndex].length) {
+        if (!cursorSpan.classList.contains('typing')) {
+          cursorSpan.classList.add('typing');
+        }
+        typedTextSpan.textContent +=
+          textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setSafeTimeout(type, typingDelay);
+      } else {
+        cursorSpan.classList.remove('typing');
+        setSafeTimeout(erase, newTextDelay);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        if (!cursorSpan.classList.contains('typing')) {
+          cursorSpan.classList.add('typing');
+        }
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(
+          0,
+          charIndex - 1
+        );
+        charIndex--;
+        setSafeTimeout(erase, erasingDelay);
+      } else {
+        cursorSpan.classList.remove('typing');
+        textArrayIndex++;
+        if (textArrayIndex >= textArray.length) {
+          textArrayIndex = 0;
+        }
+        setSafeTimeout(type, typingDelay + 1100);
+      }
+    }
+
+    // Resetting the state before starting
+    typedTextSpan.textContent = '';
+    charIndex = 0;
+    textArrayIndex = 0;
+
+    if (textArray.length) {
+      setSafeTimeout(type, newTextDelay + 250);
+    }
+  }
+
+  document.addEventListener('astro:page-load', setupTypingEffect);
+  setupTypingEffect();
+</script>
+
+<style>
+  .hero-section {
+    background-color: var(--bs-body-bg);
+    overflow: hidden;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    max-width: 65ch;
+  }
+
+  .typing-container {
+    min-height: 2.2rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    background-color: var(--bs-dark);
+    width: 3px;
+    animation: blink 1s infinite;
+  }
+
+  .cursor.typing {
+    animation: none;
+  }
+
+  @keyframes blink {
+    0% {
+      background-color: var(--bs-dark);
+    }
+    49% {
+      background-color: var(--bs-dark);
+    }
+    50% {
+      background-color: transparent;
+    }
+    99% {
+      background-color: transparent;
+    }
+    100% {
+      background-color: var(--bs-dark);
+    }
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 350px;
+    margin: 0 auto;
+    perspective: 1000px;
+  }
+
+  .tech-icon {
+    background-color: var(--bs-light);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: var(--bs-secondary-color);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+    animation: float-in 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .tech-icon:hover {
+    transform: translateY(-10px) rotateX(15deg) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+  }
+
+  @keyframes float-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .tech-icon:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .tech-icon:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .tech-icon:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .tech-icon:nth-child(4) {
+    animation-delay: 0.25s;
+  }
+  .tech-icon:nth-child(5) {
+    animation-delay: 0.35s;
+  }
+  .tech-icon:nth-child(6) {
+    animation-delay: 0.45s;
+  }
+  .tech-icon:nth-child(7) {
+    animation-delay: 0.4s;
+  }
+  .tech-icon:nth-child(8) {
+    animation-delay: 0.5s;
+  }
+  .tech-icon:nth-child(9) {
+    animation-delay: 0.6s;
+  }
+</style>

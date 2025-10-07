@@ -1,42 +1,32 @@
 ---
-//src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import WorkPhilosophy from '../components/WorkPhilosophy.astro';
+import LatestBlogPosts from '../components/LatestBlogPosts.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+import { projectsData } from '../data/projects';
+
+const allPosts = await getCollection('blog');
+
+allPosts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const latestPosts = allPosts.slice(0, 2);
+const featuredProjects = projectsData.slice(0, 3);
 ---
 
-<Layout title="Strona Główna">
+<Layout title="Jacek Kucharski - Full-Stack Web Developer">
   <main>
-    <!-- HERO SECTION -->
-    <div class="container col-xxl-8 px-4 py-5">
-      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-          <img
-            src="https://placehold.co/700x500"
-            class="d-block mx-lg-auto img-fluid"
-            alt="Placeholder"
-            width="700"
-            height="500"
-            loading="lazy"
-          />
-        </div>
-        <div class="col-lg-6">
-          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
-            Tytuł Główny Strony
-          </h1>
-          <p class="lead">
-            Krótki, chwytliwy opis tego, kim jest autor i co robi. To jest
-            miejsce, aby zachęcić użytkownika do dalszego odkrywania strony.
-          </p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a href="/projekty" class="btn btn-primary btn-lg px-4 me-md-2"
-              >Zobacz Projekty</a
-            >
-            <a href="/kontakt" class="btn btn-outline-secondary btn-lg px-4"
-              >Kontakt</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END HERO SECTION -->
+    <Hero />
+    <FeaturedProjects projects={featuredProjects} />
+    <WorkPhilosophy />
+    <LatestBlogPosts posts={latestPosts} />
+    <FinalCTA />
   </main>
 </Layout>

@@ -1,0 +1,123 @@
+---
+// src/components/ProjectCard.astro
+
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Tag {
+  text: string;
+  color:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info'
+    | 'dark';
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  imgSrc: ImageMetadata;
+  imgAlt: string;
+  demoUrl: string;
+  sourceUrl: string;
+  tags: Tag[];
+  index: number;
+}
+
+const { title, description, imgSrc, imgAlt, demoUrl, sourceUrl, tags, index } =
+  Astro.props;
+
+const slug = title.toLowerCase().replace(/\s+/g, '-');
+---
+
+<div class="col d-flex align-items-stretch">
+  <div class="card h-100 project-card">
+    <a
+      href={sourceUrl}
+      class="card-img-link"
+      aria-hidden="true"
+      tabindex="-1"
+      target="_blank"
+      rel="noopener noreferrer"
+      transition:name={`project-image-${slug}`}
+    >
+      <Image
+        src={imgSrc}
+        alt={imgAlt}
+        class="card-img-top"
+        widths={[400, 600]}
+        sizes="(max-width: 992px) 90vw, 45vw"
+        format="avif"
+        quality={80}
+        loading={index < 2 ? 'eager' : 'lazy'}
+      />
+    </a>
+    <div class="card-body d-flex flex-column">
+      <h2 class="card-title h4" transition:name={`project-title-${slug}`}>
+        {title}
+      </h2>
+      <p class="card-text">
+        {description}
+      </p>
+      <div class="mt-3 mb-4">
+        {
+          tags.map((tag) => (
+            <span class={`badge bg-${tag.color} me-1`}>{tag.text}</span>
+          ))
+        }
+      </div>
+      <div class="mt-auto text-center">
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary me-2">Live Demo</a
+        >
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-danger">Kod Źródłowy</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    background-color: var(--bs-primary-bg-subtle);
+    box-shadow: var(--bs-box-shadow-sm);
+    border: 1px solid var(--bs-primary-border-subtle);
+    border-radius: var(--bs-card-border-radius);
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--bs-box-shadow-lg);
+  }
+
+  .card-img-link {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background-color: var(--bs-light-bg-subtle);
+  }
+
+  .card-img-link .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+</style>

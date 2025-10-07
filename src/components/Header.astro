@@ -2,10 +2,14 @@
 // src/components/Header.astro
 
 import GlobalSearchForm from './GlobalSearchForm.astro';
+import Logo from './Logo.astro';
 ---
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container flex-wrap">
-    <a class="navbar-brand" href="/">Portfolio</a>
+    <a class="navbar-brand" href="/">
+      <Logo />
+    </a>
     <div class="d-flex align-items-center ms-auto ms-lg-0 order-lg-3">
       {/* --- DESKTOP SEARCH (hidden on mobile) --- */}
       <div id="desktop-search-wrapper" class="d-none d-lg-flex">
@@ -46,6 +50,9 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
     <div class="collapse navbar-collapse order-lg-2" id="main-nav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
+          <a class="nav-link" href="/">Strona Główna</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/projekty">Projekty</a>
         </li>
         <li class="nav-item">
@@ -69,11 +76,22 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
 <script>
   function initializeSearchToggle() {
     const desktopToggleButton = document.getElementById('search-toggle-button');
-    const mobileToggleButton = document.getElementById('mobile-search-toggle-button');
-    const mobileSearchWrapper = document.getElementById('mobile-search-wrapper');
-    const desktopSearchWrapper = document.getElementById('desktop-search-wrapper');
+    const mobileToggleButton = document.getElementById(
+      'mobile-search-toggle-button'
+    );
+    const mobileSearchWrapper = document.getElementById(
+      'mobile-search-wrapper'
+    );
+    const desktopSearchWrapper = document.getElementById(
+      'desktop-search-wrapper'
+    );
 
-    if (!desktopToggleButton || !mobileSearchWrapper || !desktopSearchWrapper || !mobileToggleButton) {
+    if (
+      !desktopToggleButton ||
+      !mobileSearchWrapper ||
+      !desktopSearchWrapper ||
+      !mobileToggleButton
+    ) {
       return;
     }
 
@@ -123,7 +141,9 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
 
     desktopToggleButton.addEventListener('click', toggleSearch);
     mobileToggleButton.addEventListener('click', toggleSearch);
-    const mobileCloseButton = mobileSearchWrapper.querySelector('#close-search-button');
+    const mobileCloseButton = mobileSearchWrapper.querySelector(
+      '#close-search-button'
+    );
     if (mobileCloseButton) {
       mobileCloseButton.addEventListener('click', closeSearch);
     }
@@ -140,7 +160,9 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
 
 <style is:global>
   #mobile-search-wrapper {
-    transition: max-height 0.35s ease-in-out, margin-top 0.35s ease-in-out;
+    transition:
+      max-height 0.35s ease-in-out,
+      margin-top 0.35s ease-in-out;
     max-height: 0;
     overflow: hidden;
   }
@@ -150,7 +172,9 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
   }
   @media (min-width: 992px) {
     #desktop-search-wrapper {
-      transition: width 0.35s ease-in-out, margin-right 0.35s ease-in-out;
+      transition:
+        width 0.35s ease-in-out,
+        margin-right 0.35s ease-in-out;
       width: 0;
       overflow: hidden;
     }
@@ -167,3 +191,58 @@ import GlobalSearchForm from './GlobalSearchForm.astro';
     }
   }
 </style>
+
+
+<style>
+  .navbar-brand {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .navbar-brand svg {
+    height: 32px;
+    width: auto;
+  }
+
+  @media (min-width: 992px) {
+    .navbar .container {
+      position: relative;
+    }
+    #main-nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0 0.75rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1.125rem;
+    padding: 0.5rem 0;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--bs-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+  }
+
+  .navbar-nav .nav-link:hover::after,
+  .navbar-nav .nav-link.active::after {
+    transform: scaleX(1);
+  }
+</style>
+
+

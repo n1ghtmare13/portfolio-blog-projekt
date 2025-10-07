@@ -1,0 +1,18 @@
+<!-- src/assets/images/projects/snippetsphere.svg -->
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>SnippetSphere Project Graphic</title>
+  <desc>A sphere made of code brackets, representing a code snippet storage application.</desc>
+  <g>
+    <circle cx="300" cy="180" r="90" stroke="#ffc107" stroke-width="14" />
+    <ellipse cx="300" cy="180" rx="40" ry="90" stroke="#ffc107" stroke-opacity="0.7" stroke-width="12" />
+    <path d="M240 180 C 280 200, 320 200, 360 180" stroke="#d39e00" stroke-width="8" stroke-linecap="round" />
+    <path d="M240 240 C 280 220, 320 220, 360 240" stroke="#d39e00" stroke-width="8" stroke-linecap="round" />
+  </g>
+  <text x="300" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="600" fill="#212529" text-anchor="middle">SnippetSphere</text>
+  <defs>
+    <linearGradient id="snippet_bg" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8f9fa" />
+      <stop offset="1" stop-color="#e9ecef" />
+    </linearGradient>
+  </defs>
+</svg>

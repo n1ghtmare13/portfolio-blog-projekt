@@ -1,0 +1,23 @@
+<!--src/assets/images/projects/markflow.svg-->
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>MarkFlow Project Graphic</title>
+  <desc>
+    A stylized letter &apos;M&apos; with a flowing arrow, representing a Markdown editor named MarkFlow.
+  </desc>
+  <g>
+<!--Litera 'M'-->
+    <path d="M200 280 V 150 L 300 250 L 400 150 V 280" stroke="#6f42c1" stroke-width="20" stroke-linejoin="round" stroke-linecap="round"/>
+<!--Stylizowana strzałka-->
+    <path d="M340 210 C 380 170, 420 170, 460 210" stroke="#6f42c1" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <path d="M460 210 L 435 190 M 460 210 L 435 230" stroke="#6f42c1" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.8" transform="rotate(35 460 210)"/>
+  </g>
+  <text x="300" y="345" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="600" fill="#6f42c1" text-anchor="middle">
+    MarkFlow Editor
+  </text>
+  <defs>
+    <linearGradient id="markflow_bg" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8f9fa"/>
+      <stop offset="1" stop-color="#e9ecef"/>
+    </linearGradient>
+  </defs>
+</svg>

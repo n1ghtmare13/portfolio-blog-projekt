@@ -1,0 +1,17 @@
+<svg width="600" height="400" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" aria-labelledby="logoTitle">
+  <title id="logoTitle">devfolio logo</title>
+
+  <!-- Ikona strzałek -->
+  <path d="M22 15 L8 30 L22 45 M30 45 L46 15 M54 15 L68 30 L54 45" transform="translate(25,0)"
+        style="stroke:#0d6efd;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:stroke .2s ease"
+        class="icon-group"/>
+
+  <!-- Tekst -->
+  <text x="110" y="31"
+        style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+               font-size:32px;
+               font-weight:600;
+               dominant-baseline:middle">
+    <tspan style="fill:#212529">dev</tspan><tspan style="fill:#0d6efd">folio</tspan>
+  </text>
+</svg>
