@@ -20,7 +20,7 @@ X-Content-Type-Options = "nosniff"
 # Enhances privacy by controlling referrer data sent to other sites.
 Referrer-Policy = "strict-origin-when-cross-origin"
 # Disables access to sensitive browser APIs (camera, microphone, etc.).
-Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=() clipboard-write=('self' https://giscus.app)"
 
 # === Advanced Cross-Origin Headers (Optional but Recommended) ===
 # Prevents other domains from loading our resources (e.g., images).
@@ -46,7 +46,7 @@ Content-Security-Policy = """
       style-src 'self' 'unsafe-inline' giscus.app https://fonts.googleapis.com;
       img-src 'self' data: blob: avatars.githubusercontent.com placehold.co raw.githubusercontent.com;
       connect-src 'self' cloudflare.com api.github.com cloudflareinsights.com https://unpkg.com https://www.githubstatus.com;
-      frame-src giscus.app devfolio.pl;
+      frame-src giscus.app;
       font-src 'self' data: https://fonts.gstatic.com;
       object-src 'none';
       form-action 'self';
@@ -56,37 +56,26 @@ Content-Security-Policy = """
 # === SECTION OF AGGRESSIVE CACHING ===
 # ===================================================================
 
-# Assets that are versioned (i.e., their URLs change when their content changes)
-# can be cached aggressively for better performance and reduced bandwidth.
+# Assets that are versioned can be cached aggressively.
 [[headers]]
 for = "/_astro/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
-# 2. Images im tje public folder.
+# Static images in the public folder.
 [[headers]]
 for = "/images/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
-# 3. Fonts in the public folder.
+# Static fonts in the public folder.
 [[headers]]
 for = "/fonts/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
-
 # --- Headers for HTML files (to ensure changes are always visible) ---
 [[headers]]
 for = "/*.html"
 [headers.values]
-# "public" - can be cached by CDN.
-# "max-age=0" - the browser must immediately consider its version stale.
-# "must-revalidate" - the browser MUST check with the server if a new version exists before using the cached copy.
 Cache-Control = "public, max-age=0, must-revalidate"
-
-# --- SPA / Client Router fallback for Astro ---
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
