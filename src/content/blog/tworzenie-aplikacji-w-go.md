@@ -3,13 +3,14 @@ title: Tworzenie prostych aplikacji w Go dla początkujących
 slug_override: 'tworzenie-aplikacji-w-go'
 pubDate: 2025-08-27
 description: 'Naucz się tworzyć aplikacje w Go, poznaj prostotę i wydajność języka oraz zdobądź praktyczne umiejętności programistyczne.'
-coverImage: ./tworzenie-aplikacji-w-go/Go_image.png
-coverAlt: Go image
+coverImage: ./tworzenie-aplikacji-w-go/go-cover.svg
+coverAlt: Go language logo
 ---
 
 Go, znany także jako Golang, to język stworzony przez Google, który łączy prostotę składni z wysoką wydajnością. W tym poradniku pokażemy, jak zacząć tworzyć proste aplikacje w Go.
 
 ## Instalacja
+
 Pobierz Go ze strony [golang.org](https://golang.org/dl/) i postępuj według instrukcji dla swojego systemu operacyjnego. Po instalacji sprawdź wersję:
 
 ```bash
@@ -17,6 +18,7 @@ go version
 ```
 
 ## Pierwszy program
+
 Tworzymy plik `main.go`:
 
 ```go
@@ -36,6 +38,7 @@ go run main.go
 ```
 
 ## Podstawy składni
+
 - **Zmienne:** Deklaracja zmiennych jest prosta:
 
 ```go
@@ -60,6 +63,7 @@ for i := 0; i < 5; i++ {
 ```
 
 ## Kolekcje
+
 - **Slices:** Dynamiczne tablice:
 
 ```go
@@ -74,6 +78,7 @@ scores := map[string]int{"Alice": 10, "Bob": 8}
 ```
 
 ## Tworzenie prostego serwera
+
 Go jest świetny do backendu:
 
 ```go
@@ -95,4 +100,5 @@ func main() {
 ```
 
 ## Podsumowanie
+
 Go to świetny język dla początkujących, którzy chcą szybko tworzyć wydajne aplikacje. Prosta składnia i potężne narzędzia sprawiają, że nauka jest przyjemna i praktyczna.

@@ -4,7 +4,7 @@ slug_override: 'podstawy-sql'
 pubDate: 2025-09-06
 description: 'Naucz się podstaw SQL, odkryj tajniki baz danych i zdobądź praktyczne umiejętności potrzebne do efektywnej pracy z danymi.'
 coverImage: ./podstawy-sql/sql-cover.jpg
-coverAlt: SQL image
+coverAlt: SQL language logo
 ---
 
 SQL (Structured Query Language) to język służący do pracy z bazami danych. W tym poradniku pokażemy, jak zacząć, tworzyć tabele, wstawiać dane i wykonywać podstawowe zapytania.

@@ -3,16 +3,18 @@ title: 'Wstęp do programowania w Kotlin: Tworzenie aplikacji na Androida'
 slug_override: 'wstep-do-kotlin'
 pubDate: 2025-07-07
 description: 'Poznaj Kotlin, nowoczesny język programowania, i odkryj, jak tworzyć wydajne, bezpieczne oraz nowoczesne aplikacje mobilne i webowe.'
-coverImage: './wstep-do-kotlin/Kotlin_image.png'
-coverAlt: 'Kotlin image'
+coverImage: './wstep-do-kotlin/kotlin-cover.svg'
+coverAlt: 'Kotlin language logo'
 ---
 
 Kotlin to język stworzony przez JetBrains, który stał się oficjalnym językiem Androida. W tym poradniku pokażemy, jak zacząć pisać aplikacje w Kotlin dla początkujących.
 
 ## Instalacja
+
 Najwygodniej zainstalować Android Studio, które zawiera środowisko do tworzenia aplikacji w Kotlin.
 
 ## Pierwszy program
+
 Tworzymy prostą aplikację konsolową:
 
 ```kotlin
@@ -24,6 +26,7 @@ fun main() {
 Uruchomienie w Android Studio lub IntelliJ IDEA wyświetli komunikat w konsoli.
 
 ## Podstawy składni
+
 - **Zmienne:** `val` dla niemutowalnych, `var` dla mutowalnych:
 
 ```kotlin
@@ -48,6 +51,7 @@ for (i in 1..5) {
 ```
 
 ## Tworzenie prostej aplikacji Android
+
 Tworzymy prosty `Activity` z przyciskiem:
 
 ```kotlin
@@ -65,4 +69,5 @@ class MainActivity : AppCompatActivity() {
 ```
 
 ## Podsumowanie
+
 Kotlin jest świetnym językiem dla początkujących Android developerów. Prosta składnia, interoperacyjność z Javą i wsparcie Android Studio pozwalają szybko tworzyć funkcjonalne aplikacje.

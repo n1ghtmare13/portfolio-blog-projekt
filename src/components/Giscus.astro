@@ -1,25 +1,41 @@
 ---
-// src/components/Giscus.astro
+// File: src/components/Giscus.astro
 ---
 
 <div id="giscus-container"></div>
 
 <script>
   /**
-   * Functions to manage the loading and updating of the Giscus comment system.
+   * This function handles the rendering of the Giscus widget.
+   * It's designed to be called both on initial page load and after
+   * every client-side navigation.
    */
-  function renderGiscus() {
+  function initializeGiscus() {
     const container = document.getElementById('giscus-container');
+
+    // If the container doesn't exist on the current page, do nothing.
+    // This is the crucial guard that prevents errors on pages without comments.
     if (!container) {
       return;
     }
 
+    // To prevent re-rendering if Giscus is already loaded, we check for its presence.
+    const giscusInstance = container.querySelector('iframe.giscus-frame');
+    if (giscusInstance) {
+      return;
+    }
+
+    // Clean up any potential leftover content (unlikely, but safe).
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
 
+    // Create and append the Giscus script to trigger its loading.
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+
     script.setAttribute('data-repo', 'n1ghtmare13/portfolio-blog-projekt');
     script.setAttribute('data-repo-id', 'R_kgDOPsufQQ');
     script.setAttribute('data-category', 'Komentarze do Postów');
@@ -31,12 +47,15 @@
     script.setAttribute('data-input-position', 'top');
     script.setAttribute('data-theme', 'catppuccin_latte');
     script.setAttribute('data-lang', 'pl');
-    script.setAttribute('crossorigin', 'anonymous');
-    script.async = true;
 
     container.appendChild(script);
   }
 
-  // Listening for Astro's page load event to re-render Giscus on navigation.
-  document.addEventListener('astro:page-load', renderGiscus);
+  // Set up the event listener for client-side navigations.
+  // This ensures Giscus re-renders when navigating between blog posts.
+  document.addEventListener('astro:page-load', initializeGiscus);
+
+  // Run the function once on the initial load.
+  // This handles the case where a user lands directly on a blog post page.
+  initializeGiscus();
 </script>

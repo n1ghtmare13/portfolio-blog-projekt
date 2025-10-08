@@ -37,7 +37,7 @@ const { post, index } = Astro.props;
             sizes="(max-width: 768px) 90vw, 45vw"
             format="avif"
             quality={80}
-            class="card-img-top object-fit-fill"
+            class="card-img-top"
             loading={index < 2 ? 'eager' : 'lazy'}
             transition:name={`blog-image-${post.slug}`}
           />
@@ -101,7 +101,7 @@ const { post, index } = Astro.props;
   .card-img-link .card-img-top {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     animation: fade-in 0.5s ease-in-out forwards;
   }
 

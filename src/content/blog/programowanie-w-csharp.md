@@ -4,7 +4,7 @@ slug_override: 'programowanie-w-csharp'
 pubDate: 2025-10-01
 description: 'Naucz się podstaw C#, odkryj możliwości programowania obiektowego i zdobądź praktyczne umiejętności potrzebne do tworzenia aplikacji.'
 coverImage: ./programowanie-w-csharp/c-sharp.png
-coverAlt: C# image
+coverAlt: C# language logo
 ---
 
 C# to język stworzony przez Microsoft, popularny w tworzeniu aplikacji desktopowych, gier i aplikacji webowych. W tym poradniku pokażemy, jak rozpocząć przygodę z C# i stworzyć prostą aplikację desktopową.

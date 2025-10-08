@@ -3,8 +3,8 @@ title: 'Zrozumieć wskaźniki w języku C — praktyczny przewodnik dla początk
 slug_override: 'wskazniki-w-c'
 pubDate: 2025-10-06
 description: 'Dowiedz się, czym są wskaźniki w języku C, jak działają i jak z nich korzystać bez popełniania typowych błędów.'
-coverImage: ./wskazniki-w-c/c_image.png
-coverAlt: C image
+coverImage: ./wskazniki-w-c/c-cover.svg
+coverAlt: C language logo
 ---
 
 Wskaźniki to jedno z najpotężniejszych, ale i najbardziej niezrozumianych narzędzi w języku C. Pozwalają one na bezpośredni dostęp do pamięci, przekazywanie danych między funkcjami bez kopiowania oraz dynamiczną alokację pamięci. W tym artykule przyjrzymy się podstawom wskaźników i pokażemy, jak z nich korzystać w praktyce.

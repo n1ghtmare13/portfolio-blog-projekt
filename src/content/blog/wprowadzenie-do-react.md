@@ -3,7 +3,7 @@ title: 'Wprowadzenie do React: Budowa interaktywnych interfejsów użytkownika'
 slug_override: 'wprowadzenie-do-react'
 pubDate: 2025-10-20
 description: 'Odkryj React, bibliotekę do tworzenia nowoczesnych UI. Naucz się, jak budować komponenty, zarządzać stanem i renderować dynamiczne listy.'
-coverImage: './wprowadzenie-do-react/react-cover.png'
+coverImage: './wprowadzenie-do-react/react-cover.svg'
 coverAlt: 'Logo React'
 ---
 
