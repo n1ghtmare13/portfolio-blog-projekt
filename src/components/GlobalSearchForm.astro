@@ -1,5 +1,6 @@
 ---
 // src/components/GlobalSearchForm.astro
+import { Icon } from 'astro-icon/components';
 export interface Props {
   showCloseButton?: boolean;
 }
@@ -24,7 +25,7 @@ const { showCloseButton = false } = Astro.props;
         aria-label="Szukaj na blogu"
       />
       <button class="btn btn-search" type="submit" aria-label="Szukaj">
-        <i class="bi bi-search"></i>
+        <Icon name="bi:search" class="icon" />
       </button>
     </div>
   </form>
@@ -37,13 +38,15 @@ const { showCloseButton = false } = Astro.props;
         id="close-search-button"
         aria-label="Zamknij wyszukiwarkę"
       >
-        <i class="bi bi-x-lg" />
+        <Icon name="bi:x-lg" class="icon" />
       </button>
     )
   }
 </div>
 
+
 <style>
+  /* Zostawiamy tylko style specyficzne dla tego komponentu */
   .global-search-container .form-control,
   .global-search-container .btn-search {
     background-color: #d2deee;
@@ -57,6 +60,9 @@ const { showCloseButton = false } = Astro.props;
 
   .global-search-container .btn-search {
     color: var(--bs-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition:
       background-color 0.2s ease-in-out,
       color 0.2s ease-in-out;
@@ -71,20 +77,11 @@ const { showCloseButton = false } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    /* Set explicit dimensions to perfectly match .navbar-toggler */
     width: 56px;
     height: 40px;
     box-sizing: border-box;
-
-    /* Use identical padding and font-size */
     padding: 4px 12px;
     font-size: 20px;
     line-height: 1;
-  }
-
-  .global-search-container .close-search-btn > i {
-    position: relative;
-    top: -1px;
   }
 </style>

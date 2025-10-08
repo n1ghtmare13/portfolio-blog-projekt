@@ -17,14 +17,15 @@
     "@popperjs/core": "^2.11.8",
     "@vite-pwa/astro": "^1.1.0",
     "astro": "5.14.1",
+    "astro-icon": "^1.1.5",
     "astro-pagefind": "^1.8.5",
     "astro-seo": "^0.8.4",
     "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
     "remove-accents": "^0.5.0",
     "vite-plugin-pwa": "^1.0.3"
   },
   "devDependencies": {
+    "@iconify-json/bi": "^1.2.6",
     "@types/bootstrap": "^5.2.10",
     "@types/bun": "^1.2.22",
     "copyfiles": "^2.4.1",

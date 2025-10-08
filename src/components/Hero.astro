@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 // src/components/Hero.astro
 ---
 
@@ -27,7 +29,10 @@
           <a
             href="/projekty"
             class="btn btn-primary btn-lg px-4 gap-3 d-inline-flex align-items-center"
-            >Zobacz moje projekty <i class="bi bi-arrow-right-short"></i></a
+            >Zobacz moje projekty <Icon
+              name="bi:arrow-right-short"
+              class="icon"
+            /></a
           >
           <a
             href="/kontakt"
@@ -41,31 +46,31 @@
       <div class="col-lg-5 text-center">
         <div class="tech-grid">
           <div class="tech-icon" title="JavaScript">
-            <i class="bi bi-javascript"></i>
+            <Icon name="bi:javascript" class="icon" />
           </div>
           <div class="tech-icon" title="TypeScript">
-            <i class="bi bi-typescript"></i>
+            <Icon name="bi:typescript" class="icon" />
           </div>
           <div class="tech-icon" title="React">
-            <i class="bi bi-filetype-jsx"></i>
+            <Icon name="bi:filetype-jsx" class="icon" />
           </div>
           <div class="tech-icon" title="Node.js">
-            <i class="bi bi-hexagon-fill"></i>
+            <Icon name="bi:hexagon-fill" class="icon" />
           </div>
           <div class="tech-icon" title="Astro">
-            <i class="bi bi-rocket-takeoff-fill"></i>
+            <Icon name="bi:rocket-takeoff-fill" class="icon" />
           </div>
           <div class="tech-icon" title="CSS3">
-            <i class="bi bi-css"></i>
+            <Icon name="bi:css" class="icon" />
           </div>
           <div class="tech-icon" title="Bootstrap">
-            <i class="bi bi-bootstrap-fill"></i>
+            <Icon name="bi:bootstrap-fill" class="icon" />
           </div>
           <div class="tech-icon" title="Git">
-            <i class="bi bi-git"></i>
+            <Icon name="bi:git" class="icon" />
           </div>
           <div class="tech-icon" title="Performance">
-            <i class="bi bi-speedometer2"></i>
+            <Icon name="bi:speedometer2" class="icon" />
           </div>
         </div>
       </div>
@@ -175,27 +180,22 @@
     background-color: var(--bs-body-bg);
     overflow: hidden;
   }
-
   .hero-description {
     font-size: 1.15rem;
     max-width: 65ch;
   }
-
   .typing-container {
     min-height: 2.2rem;
   }
-
   .cursor {
     display: inline-block;
     background-color: var(--bs-dark);
     width: 3px;
     animation: blink 1s infinite;
   }
-
   .cursor.typing {
     animation: none;
   }
-
   @keyframes blink {
     0% {
       background-color: var(--bs-dark);
@@ -213,7 +213,6 @@
       background-color: var(--bs-dark);
     }
   }
-
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -222,7 +221,6 @@
     margin: 0 auto;
     perspective: 1000px;
   }
-
   .tech-icon {
     background-color: var(--bs-light);
     border: 1px solid var(--bs-border-color);
@@ -231,8 +229,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
     color: var(--bs-secondary-color);
+    font-size: 3rem;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease,
@@ -241,14 +239,12 @@
     animation: float-in 0.5s ease-out forwards;
     opacity: 0;
   }
-
   .tech-icon:hover {
     transform: translateY(-10px) rotateX(15deg) scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     color: var(--bs-primary);
     border-color: var(--bs-primary);
   }
-
   @keyframes float-in {
     from {
       opacity: 0;
@@ -259,7 +255,6 @@
       transform: translateY(0);
     }
   }
-
   .tech-icon:nth-child(1) {
     animation-delay: 0.1s;
   }
@@ -286,5 +281,10 @@
   }
   .tech-icon:nth-child(9) {
     animation-delay: 0.6s;
+  }
+  .btn .icon {
+    width: 1.25em;
+    height: 1.25em;
+    margin-left: 0.25rem;
   }
 </style>
