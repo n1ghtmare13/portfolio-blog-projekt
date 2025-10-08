@@ -11,10 +11,9 @@ import FinalCTA from '../components/FinalCTA.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { projectsData } from '../data/projects';
 
-const pageTitle = 'Jacek Kucharski - Full-Stack Web Developer';
+const pageTitle = 'Strona Główna';
 const pageDesc =
-  'Portfolio i blog Jacka Kucharskiego, Full-Stack Developera specjalizującego się w JavaScript, React i Node.js. Zobacz moje projekty i przeczytaj artykuły o nowoczesnym web developmencie.';
-
+  'Portfolio i blog Full-Stack Developera Jacka Kucharskiego. Odkryj projekty w JavaScript, React i Node.js oraz artykuły o nowoczesnym web developmencie.';
 const allPosts = await getCollection('blog');
 
 allPosts.sort(
