@@ -1,4 +1,5 @@
 # file: .gitignore
+
 # Build output
 dist/
 .astro/
@@ -43,3 +44,6 @@ ehthumbs.db
 
 # Pagefind search index for local development
 /public/pagefind
+
+# Temporary directory for Vite PWA dev server
+dev-dist/
